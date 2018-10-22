@@ -58,6 +58,9 @@ sourceSets {
       java {
           srcDirs = ['src']
       }
+	  resources {
+		  srcDirs = ['src/resources']
+	  }
   }  
 	//compileClasspath += sourceSets.main.output + configurations.testRuntimeClasspath
 	//runtimeClasspath += output + compileClasspath
