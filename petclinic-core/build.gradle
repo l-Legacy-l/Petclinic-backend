@@ -16,6 +16,15 @@ dependencies {
 	testRuntime('org.junit.jupiter:junit-jupiter-engine:5.3.1')
 }
 
+task copyConfigXML(type: Copy) {
+    from ("src/be/heh/petclinic"){
+    include '**/*.xml'}
+
+    into ("build/classes/java/main/be/heh/petclinic")
+}
+
+build.finalizedBy(copyConfigXML)
+
 sourceSets {
 
   main{
