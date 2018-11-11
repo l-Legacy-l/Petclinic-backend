@@ -9,6 +9,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 public class JdbcVetDao {
+    //Classe pour se connecter à la BDD et récupérer les données
 
     private DataSource dataSource;
 
@@ -17,6 +18,7 @@ public class JdbcVetDao {
     }
 
     public List<Vet> getEvents() {
+        //JDBCTemplate Permet de faire la requete
         JdbcTemplate select = new JdbcTemplate(dataSource);
         return select.query("SELECT lastname, firstname, speciality FROM vet", new VetRowMapper());
     }
