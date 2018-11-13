@@ -1,3 +1,4 @@
+USE petclinic;
 DROP TABLE IF EXISTS vet;
 
 CREATE TABLE vet (
