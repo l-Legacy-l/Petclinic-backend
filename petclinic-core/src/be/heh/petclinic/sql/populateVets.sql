@@ -6,6 +6,6 @@ INSERT INTO vet (lastname, firstname, speciality) VALUES ("Linda", "Linda", "sur
 
 INSERT INTO pet (type, name, birthdate,owner) VALUES ("Chien", "Medor", "2016-04-12","owner1");
 
-INSERT INTO pet (type, name, birthday,owner) VALUES ("Helen", "Helen", "radiology","owner2");
+INSERT INTO pet (type, name, birthdate,owner) VALUES ("Chat", "Flo", "2011-08-08","owner2");
 
-INSERT INTO pet (type, name, birthday,owner) VALUES ("Linda", "Linda", "surgery","owner3");
+INSERT INTO pet (type, name, birthdate,owner) VALUES ("Tortue", "Tortette", "2014-08-23","owner3");

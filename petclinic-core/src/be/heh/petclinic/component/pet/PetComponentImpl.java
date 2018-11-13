@@ -1,4 +1,4 @@
-package be.heh.petclinic.component.vet;
+package be.heh.petclinic.component.pet;
 
 import java.util.ArrayList;
 import java.util.List;

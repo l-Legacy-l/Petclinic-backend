@@ -1,6 +1,6 @@
-package be.heh.petclinic.component.vet;
+package be.heh.petclinic.component.pet;
 
-import be.heh.petclinic.domain.Vet;
+import be.heh.petclinic.domain.Pet;
 
 import java.util.List;
 
