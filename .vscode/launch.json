@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - PetClinicApplication",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "PetClinicApplication",
+            "args": "",
+            "projectName": "petclinic-web"
+        }
+    ]
+}
