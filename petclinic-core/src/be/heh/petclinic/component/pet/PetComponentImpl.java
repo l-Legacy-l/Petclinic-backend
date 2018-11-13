@@ -13,12 +13,12 @@ class PetComponentImpl implements PetComponent {
     private JdbcPetDao petDao;
   
     public PetComponentImpl(DataSource dataSource){
-        petDao = new JdbcpetDao(dataSource);
+        petDao = new JdbcPetDao(dataSource);
     }
 
     @Override
     public Collection<Pet> getPets() {
-        List<Pet> pets = PetDao.getEvents();
+        List<Pet> pets = petDao.getEvents();
         //vets.add(new Vet("James","James","none"));
         //vets.add(new Vet("Helen","Helen","radiology"));
         //vets.add(new Vet("Linda","Linda","surgery"));

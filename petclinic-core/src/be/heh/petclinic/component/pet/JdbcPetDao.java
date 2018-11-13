@@ -17,11 +17,11 @@ public class JdbcPetDao {
         this.dataSource = dataSource;
     }
 
-    public List<Vet> getEvents() {
+    public List<Pet> getEvents() {
         //JDBCTemplate Permet de faire la requete
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.query("SELECT type, name, birthdate, owner FROM pet", new PetRowMapper());
+        return select.query("SELECT type, name, birthdate, ownerFirstname,ownerLastname FROM pet",
+                new PetRowMapper());
     }
 
 }
-

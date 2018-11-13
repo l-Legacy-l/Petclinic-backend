@@ -2,6 +2,8 @@ package be.heh.petclinic.web;
 
 import java.util.Collection;
 
+import be.heh.petclinic.component.pet.PetComponent;
+import be.heh.petclinic.domain.Pet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -30,7 +32,7 @@ public class PetRestController {
 	@RequestMapping("api/v1/pets")
 	public ResponseEntity<Collection<Pet>> getPets(){
 	
-		Collection<Pet> pets = petComponentImpl.getPets();
+		Collection<Pet> pets = PetComponentImpl.getPets();
 		if(pets.isEmpty()){
 			return new ResponseEntity<Collection<Pet>>(HttpStatus.NOT_FOUND);
 		}
