@@ -7,3 +7,13 @@ CREATE TABLE vet (
     firstname varchar(45) not null,
     speciality char(45) not null,
     primary key (id) );
+
+DROP TABLE IF EXISTS pet;
+
+CREATE TABLE pet (
+    id int NOT NULL AUTO_INCREMENT,
+    type varchar(45) not null,
+    name varchar(45) not null,
+    birthdate DATE,
+    owner varchar(45) not null,
+    primary key (id) );
