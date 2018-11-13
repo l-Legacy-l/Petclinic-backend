@@ -7,6 +7,17 @@
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
             "stopOnEntry": false,
+            "mainClass": "be.heh.petclinic.PetClinicApplication",
+            "args": "",
+            "projectName": "petclinic-web"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - PetClinicApplication",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
             "mainClass": "PetClinicApplication",
             "args": "",
             "projectName": "petclinic-web"

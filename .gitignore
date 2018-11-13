@@ -1,6 +1,9 @@
 target/
 bin/
 .class
+.bin
+.jar
+.json
 !.mvn/wrapper/maven-wrapper.jar
 .gradle
 /build/
@@ -35,3 +38,15 @@ bin/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+petclinic-core/build/classes/java/main/be/heh/petclinic/component/owner/
+petclinic-core/build/classes/java/main/be/heh/petclinic/component/pet/
+petclinic-core/build/classes/java/main/be/heh/petclinic/domain/Owner.class
+petclinic-core/build/classes/java/main/be/heh/petclinic/domain/Pet.class
+petclinic-core/build/classes/java/main/be/heh/petclinic/sql/
+petclinic-core/build/tmp/compileJava/
+petclinic-core/build/tmp/compileTestJava/
+petclinic-core/out/
+petclinic-web/build/classes/java/main/be/heh/petclinic/web/OwnerRestController.class
+petclinic-web/build/classes/java/main/be/heh/petclinic/web/PetRestController.class
+petclinic-web/build/tmp/compileJava/
+petclinic-web/out/
