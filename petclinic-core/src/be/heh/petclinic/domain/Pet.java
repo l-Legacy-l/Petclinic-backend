@@ -17,9 +17,9 @@ public class Pet{
         this.ownerLastname=ownerLastname;
     }
 
-    public void setType(String typee)
+    public void setType(String type)
     {
-        this.type = typee;
+        this.type = type;
     }
 
     public void setOwnerFirstname(String ownerFirstname)
