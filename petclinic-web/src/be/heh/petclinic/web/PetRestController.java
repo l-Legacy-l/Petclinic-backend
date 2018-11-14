@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.http.ResponseEntity;
 
 import be.heh.petclinic.component.vet.VetComponent;
@@ -29,6 +30,7 @@ public class PetRestController {
 	private PetComponent PetComponentImpl;
     
 	//@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@CrossOrigin
 	@RequestMapping("api/v1/pets")
 	public ResponseEntity<Collection<Pet>> getPets(){
 	
