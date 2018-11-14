@@ -9,5 +9,5 @@ import java.util.Collection;
 public interface PetComponent{
 
     Collection<Pet> getPets();
-    void addPet();
+    void addPet(String type, String name, String birthdate, String ownerFirstname, String ownerLastname);
 }
