@@ -16,6 +16,7 @@ class PetComponentImpl implements PetComponent {
     public PetComponentImpl(DataSource dataSource){
         petDao = new JdbcPetDao(dataSource);
         
+        
     }
 
     @Override
@@ -26,8 +27,8 @@ class PetComponentImpl implements PetComponent {
     }
 
     @Override
-    public Collection<Pet> getPetsType(){
-        List<Pet> pets = petDao.getPetType();
+    public Collection<Pet> getPetsType(String sort){
+        List<Pet> pets = petDao.getPetType(sort);
 
         return pets;
     }

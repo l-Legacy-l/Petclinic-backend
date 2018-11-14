@@ -12,7 +12,7 @@ public class JdbcPetDao {
     //Classe pour se connecter à la BDD et récupérer les données
 
     private DataSource dataSource;
-    public String $a;
+    public String types;
 
     public JdbcPetDao(DataSource dataSource){
         this.dataSource = dataSource;
@@ -25,10 +25,10 @@ public class JdbcPetDao {
                 new PetRowMapper());
     } 
 
-    public List<Pet> getPetType() {
+    public List<Pet> getPetType(String sort) {
         //JDBCTemplate Permet de faire la requete
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.query("SELECT type, name, birthdate, ownerFirstname,ownerLastname FROM pet WHERE type = '$a'",
+        return select.query("SELECT type, name, birthdate, ownerFirstname,ownerLastname FROM pet WHERE type = 'sort' ",
                 new PetRowMapper());
     }
 

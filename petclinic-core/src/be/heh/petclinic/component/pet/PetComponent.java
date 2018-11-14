@@ -9,6 +9,6 @@ import java.util.Collection;
 public interface PetComponent{
 
     Collection<Pet> getPets();
-    Collection<Pet> getPetsType();
+    Collection<Pet> getPetsType(String sort);
 
 }
