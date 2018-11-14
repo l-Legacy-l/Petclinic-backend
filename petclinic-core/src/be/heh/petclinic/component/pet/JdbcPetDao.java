@@ -24,4 +24,16 @@ public class JdbcPetDao {
                 new PetRowMapper());
     }
 
+
+    public int addPet(String type, String name,String birthdate,String ownerFirstname,String ownerLastname)
+    {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        return jdbcTemplate.update("INSERT INTO pet (type, name,birthdate,ownerFirstname,ownerLastname) VALUES(?,?,?,?,?)",
+                type,name,birthdate,ownerFirstname,ownerLastname);
+    }
+
+
+
+
 }

@@ -25,5 +25,9 @@ class PetComponentImpl implements PetComponent {
         return pets;
     }
 
-
+    @Override
+    public void addPet()
+    {
+        petDao.addPet("chat", "test", "2017-12-12", "Toast","Toast" );
+    }
 }

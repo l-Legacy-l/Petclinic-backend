@@ -38,4 +38,11 @@ public class PetRestController {
 		}
 		return new ResponseEntity<Collection<Pet>>(pets,HttpStatus.OK);
 	}
+
+	@RequestMapping("api/v1/petInsert")
+	public ResponseEntity<Pet> insertPet()
+	{
+		PetComponentImpl.addPet();
+		return new ResponseEntity<Pet>(HttpStatus.CREATED);
+	}
 }
