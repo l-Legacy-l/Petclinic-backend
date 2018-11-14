@@ -31,7 +31,7 @@ public class PetRestController {
     
 	//@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@CrossOrigin
-	@RequestMapping("api/v1/pets")
+	@RequestMapping(value = "api/v1/pets", method = RequestMethod.GET)
 	public ResponseEntity<Collection<Pet>> getPets(){
 	
 		Collection<Pet> pets = PetComponentImpl.getPets();
@@ -40,4 +40,16 @@ public class PetRestController {
 		}
 		return new ResponseEntity<Collection<Pet>>(pets,HttpStatus.OK);
 	}
+
+	@RequestMapping(value = "api/v1/pets/chat", method = RequestMethod.GET)
+		public ResponseEntity<Collection<Pet>> getPetsType(){
+	
+			Collection<Pet> pets = PetComponentImpl.getPetsType();
+			if(pets.isEmpty()){
+				return new ResponseEntity<Collection<Pet>>(HttpStatus.NOT_FOUND);
+			}
+			return new ResponseEntity<Collection<Pet>>(pets,HttpStatus.OK);
+	}
+
+	
 }
