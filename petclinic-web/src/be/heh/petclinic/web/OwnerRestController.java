@@ -27,6 +27,7 @@ public class OwnerRestController {
 	private OwnerComponent ownerComponentImpl;
     
 	//@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+  @CrossOrigin
 	@RequestMapping("api/v1/owners")
 	public ResponseEntity<Collection<Owner>> getOwners(){
 	
