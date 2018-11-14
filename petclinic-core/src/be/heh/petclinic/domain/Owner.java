@@ -1,69 +1,61 @@
 package be.heh.petclinic.domain;
 
-public class Owner {
+public class Owner{
 
-    private String lastname;
     private String firstname;
+    private String lastname;
     private String address;
     private String city;
     private String telephone;
     private String pet;
 
-    public Owner(String lastname, String firstname, String address, String city, String telephone, String pet) {
-        this.lastname = lastname;
+    public Owner (String firstname, String lastname, String address, String city, String telephone, String pet)
+    {
         this.firstname = firstname;
+        this.lastname=lastname;
         this.address = address;
         this.city = city;
-        this.telephone = telephone;
-        this.pet = pet;
+        this.telephone=telephone;
+        this.pet=pet;
     }
 
-    public void setLastname(String lastname){
-        this.lastname = lastname;
-    }
-
-    public void setFirstname(String firstname){
+    public void setFirstname(String firstname)
+    {
         this.firstname = firstname;
     }
 
-    public void setAddress(String address){
+    public void setLastname(String lastname)
+    {
+        this.lastname = lastname;
+    }
+
+    public void setAddress(String address)
+    {
         this.address = address;
     }
 
-    public void setCity(String city){
-        this.city = city;
+    public void setTelephone(String telephone)
+    {
+        this.telephone=telephone;
     }
 
-    public void setTelephone(String telephone){
-        this.telephone = telephone;
+    public void setPet(String pet)
+    {
+        this.pet=pet;
     }
 
-    public void setPet(String pet){
-        this.pet = pet;
-    }
+    public String getFirstname() {  return firstname;   }
 
-    public String getLastname(){
-        return this.lastname;
-    }
+    public String getLastname() {   return lastname;    }
 
-    public String getFirstname(){
-        return this.firstname;
-    }
+    public String getAddress() {  return address;    }
 
-    public String getAddress(String address){
-        return this.address;
-    }
+    public String getCity() {   return city;    }
 
-    public String getCity(String city){
-        return this.city;
-    }
+    public String getTelephone() {  return telephone;    }
 
-    public String getTelephone(String telephone){
-        return this.telephone;
-    }
+    public String getPet() {    return pet;     }
 
-    public String getPet(String pet){
-        return this.pet;
-    }
+
 
 }
