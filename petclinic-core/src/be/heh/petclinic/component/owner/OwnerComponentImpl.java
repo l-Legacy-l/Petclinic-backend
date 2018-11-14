@@ -13,7 +13,7 @@ class OwnerComponentImpl implements OwnerComponent {
     private JdbcOwnerDao ownerDao;
   
     public OwnerComponentImpl(DataSource dataSource){
-       ownerDao = new JdbcOwnerDao(dataSource);
+        ownerDao = new JdbcOwnerDao(dataSource);
     }
 
     @Override
@@ -22,4 +22,6 @@ class OwnerComponentImpl implements OwnerComponent {
       
         return owners;
     }
+
+
 }
