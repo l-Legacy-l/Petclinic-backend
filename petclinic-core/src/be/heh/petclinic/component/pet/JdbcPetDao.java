@@ -1,7 +1,8 @@
 package be.heh.petclinic.component.pet;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 import be.heh.petclinic.domain.Pet;
 import java.util.List;
@@ -28,8 +29,8 @@ public class JdbcPetDao {
     public List<Pet> getPetType(String sort) {
         //JDBCTemplate Permet de faire la requete
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.query("SELECT type, name, birthdate, ownerFirstname,ownerLastname FROM pet WHERE type = 'sort' ",
-                new PetRowMapper());
+        return select.query("SELECT type, name, birthdate, ownerFirstname,ownerLastname FROM pet WHERE type=?", 
+            new Object[] {sort},new PetRowMapper());
     }
 
 

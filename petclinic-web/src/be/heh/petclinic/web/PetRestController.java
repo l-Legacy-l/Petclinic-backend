@@ -49,7 +49,7 @@ public class PetRestController {
 	@ResponseBody
 		public ResponseEntity<Collection<Pet>> getPetsType(@RequestParam Map<String,String>param)
 		{
-			 sort = param.get("type");
+			sort = param.get("type");
 			Collection<Pet> pets = PetComponentImpl.getPetsType(sort);
 			if(pets.isEmpty()){
 				return new ResponseEntity<Collection<Pet>>(HttpStatus.NOT_FOUND);

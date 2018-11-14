@@ -14,9 +14,7 @@ class PetComponentImpl implements PetComponent {
     
   
     public PetComponentImpl(DataSource dataSource){
-        petDao = new JdbcPetDao(dataSource);
-        
-        
+        petDao = new JdbcPetDao(dataSource); 
     }
 
     @Override
