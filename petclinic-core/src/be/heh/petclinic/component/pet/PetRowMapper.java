@@ -16,7 +16,7 @@ public class PetRowMapper implements RowMapper<Pet> {
     @Override
     public Pet mapRow(ResultSet rs,int i) throws SQLException {
          //on fait le mapping
-        Pet pet = new Pet(rs.getString("type"),rs.getString("name"),
+        Pet pet = new Pet(rs.getInt("id"),rs.getString("type"),rs.getString("name"),
                 rs.getString("birthdate"),rs.getString("ownerFirstname"),
                 rs.getString("ownerLastname"));
         return pet;

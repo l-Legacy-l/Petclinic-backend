@@ -8,8 +8,9 @@ public class Owner{
     private String city;
     private String telephone;
     private String pet;
+    private int id;
 
-    public Owner (String firstname, String lastname, String address, String city, String telephone, String pet)
+    public Owner (int id,String firstname, String lastname, String address, String city, String telephone, String pet)
     {
         this.firstname = firstname;
         this.lastname=lastname;
@@ -17,6 +18,7 @@ public class Owner{
         this.city = city;
         this.telephone=telephone;
         this.pet=pet;
+        this.id=id;
     }
 
     public void setFirstname(String firstname)
@@ -55,6 +57,15 @@ public class Owner{
     public String getTelephone() {  return telephone;    }
 
     public String getPet() {    return pet;     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 
 
 

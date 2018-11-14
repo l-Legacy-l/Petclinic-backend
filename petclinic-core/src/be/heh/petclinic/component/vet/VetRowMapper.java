@@ -16,7 +16,7 @@ public class VetRowMapper implements RowMapper<Vet> {
     @Override
     public Vet mapRow(ResultSet rs,int i) throws SQLException {
          //on fait le mapping
-        Vet vet = new Vet(rs.getString("lastname"),rs.getString("firstname"),rs.getString("speciality"));
+        Vet vet = new Vet(rs.getInt("id"),rs.getString("lastname"),rs.getString("firstname"),rs.getString("speciality"));
         return vet;
     }
 

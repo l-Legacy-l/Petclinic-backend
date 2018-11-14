@@ -5,12 +5,14 @@ public class Vet {
     private String lastname;
     private String firstname;
     private String speciality;
+    private int id;
 
-    public Vet(String lastname, String firstname,String speciality)
+    public Vet(int id, String lastname, String firstname,String speciality)
     {
         this.lastname = lastname;
         this.firstname=firstname;
         this.speciality = speciality;
+        this.id=id;
     }
 
     public void setLastname(String lastname){
@@ -36,5 +38,14 @@ public class Vet {
     public String getSpeciality(){
         return this.speciality;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 
 }
