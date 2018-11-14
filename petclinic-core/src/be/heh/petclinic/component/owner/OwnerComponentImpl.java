@@ -23,5 +23,11 @@ class OwnerComponentImpl implements OwnerComponent {
         return owners;
     }
 
+    @Override
+    public void addOwner()
+    {
+        ownerDao.addOwner("Jean", "Valjean", "rue de test 28", "Issou","098765456","chatte" );
+    }
+
 
 }

@@ -24,4 +24,12 @@ public class JdbcOwnerDao {
                 new OwnerRowMapper());
     }
 
+    public int addOwner(String firstname, String lastname,String address,String city,String telephone, String pet)
+    {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        return jdbcTemplate.update("INSERT INTO owner (firstname, lastname,address,city,telephone,pet) VALUES(?,?,?,?,?,?)",
+                firstname,lastname,address,city,telephone,pet);
+    }
+
 }

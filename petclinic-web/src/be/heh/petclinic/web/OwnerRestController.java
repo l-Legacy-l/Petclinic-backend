@@ -9,11 +9,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 
 import be.heh.petclinic.component.vet.VetComponent;
@@ -21,6 +18,9 @@ import be.heh.petclinic.domain.Vet;
 
 import java.util.List;
 import java.util.Collection;
+import java.util.Map;
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @RestController
 
@@ -28,16 +28,24 @@ public class OwnerRestController {
 
 	@Autowired
 	private OwnerComponent OwnerComponentImpl;
-    
+
 	//@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@CrossOrigin
 	@RequestMapping("api/v1/owners")
 	public ResponseEntity<Collection<Owner>> getOwners(){
-	
+
 		Collection<Owner> owners = OwnerComponentImpl.getOwners();
 		if(owners.isEmpty()){
 			return new ResponseEntity<Collection<Owner>>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<Collection<Owner>>(owners,HttpStatus.OK);
+	}
+
+	@RequestMapping("api/v1/ownerInsert")
+	public ResponseEntity<Owner> insertPet()
+	{
+
+		OwnerComponentImpl.addOwner();
+		return new ResponseEntity<Owner>(HttpStatus.CREATED);
 	}
 }
