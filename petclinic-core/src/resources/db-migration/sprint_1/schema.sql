@@ -32,5 +32,5 @@ CREATE TABLE owner (
     address char(45) not null,
     city varchar(45) not null,
     telephone varchar(45) not null,
-    pet varchar(45) not null,
+    pet varchar(45),
     primary key (id) );
