@@ -23,5 +23,13 @@ public class JdbcVetDao {
         return select.query("SELECT lastname, firstname, speciality FROM vet", new VetRowMapper());
     }
 
+    public List<Vet> getVetSpeciality(String spec) {
+        //JDBCTemplate Permet de faire la requete
+        JdbcTemplate select = new JdbcTemplate(dataSource);
+        return select.query("SELECT lastname, firstname, speciality FROM vet WHERE speciality=?",new Object[] {spec}, new VetRowMapper());
+            
+    }
+
+
 }
 

@@ -9,5 +9,6 @@ import java.util.Collection;
 public interface VetComponent{
 
     Collection<Vet> getVets();
+    Collection<Vet> getVetsSpeciality(String spec);
 
 }
