@@ -23,5 +23,11 @@ class OwnerComponentImpl implements OwnerComponent {
         return owners;
     }
 
+    @Override
+    public void addOwner(String firstname,String lastname, String address,String city,String telephone, String pet)
+    {
+        ownerDao.addOwner(firstname, lastname, address, city,telephone,pet);
+    }
+
 
 }

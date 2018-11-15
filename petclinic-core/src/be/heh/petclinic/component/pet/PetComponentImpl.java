@@ -31,13 +31,8 @@ class PetComponentImpl implements PetComponent {
         return pets;
     }
 
-   
-
-    
-
-   
-
-    
-
+    public void addPet(String type, String name, String birthdate, String ownerFirstname, String ownerLastname) {
+        petDao.addPet(type, name, birthdate, ownerFirstname, ownerLastname);
+    }
 
 }

@@ -7,5 +7,6 @@ import java.util.Collection;
 public interface OwnerComponent{
 
     Collection<Owner> getOwners();
+    void addOwner(String firstname,String lastname, String address,String city,String telephone, String pet);
 
 }
