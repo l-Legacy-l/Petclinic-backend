@@ -20,7 +20,7 @@ public class JdbcVetDao {
     public List<Vet> getEvents() {
         //JDBCTemplate Permet de faire la requete
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.query("SELECT lastname, firstname, speciality FROM vet", new VetRowMapper());
+        return select.query("SELECT id, lastname, firstname, speciality FROM vet", new VetRowMapper());
     }
 
 }

@@ -7,14 +7,16 @@ public class Pet{
     private String ownerFirstname;
     private String ownerLastname;
     private String birthdate;
+    private int id;
 
-    public Pet (String type, String name, String birthdate, String ownerFirstname, String ownerLastname)
+    public Pet (int id, String type, String name, String birthdate, String ownerFirstname, String ownerLastname)
     {
         this.type = type;
         this.name=name;
         this.birthdate = birthdate;
         this.ownerFirstname = ownerFirstname;
         this.ownerLastname=ownerLastname;
+        this.id = id;
     }
 
     public void setType(String type)
@@ -58,5 +60,12 @@ public class Pet{
     }
 
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
 }

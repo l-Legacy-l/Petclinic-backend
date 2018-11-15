@@ -20,7 +20,7 @@ public class JdbcPetDao {
     public List<Pet> getEvents() {
         //JDBCTemplate Permet de faire la requete
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.query("SELECT type, name, birthdate, ownerFirstname,ownerLastname FROM pet",
+        return select.query("SELECT id,type, name, birthdate, ownerFirstname,ownerLastname FROM pet",
                 new PetRowMapper());
     }
 

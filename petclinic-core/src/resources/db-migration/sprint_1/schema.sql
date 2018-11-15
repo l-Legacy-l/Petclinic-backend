@@ -1,3 +1,7 @@
+--liquibase formatted sql
+
+--changeset fabio:2
+
 USE petclinic;
 DROP TABLE IF EXISTS vet;
 

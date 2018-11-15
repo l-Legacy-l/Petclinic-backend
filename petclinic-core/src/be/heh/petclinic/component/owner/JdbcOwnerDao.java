@@ -20,7 +20,7 @@ public class JdbcOwnerDao {
     public List<Owner> getEvents() {
         //JDBCTemplate Permet de faire la requete
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.query("SELECT firstname,lastname,address,city,telephone,pet FROM owner",
+        return select.query("SELECT id,firstname,lastname,address,city,telephone,pet FROM owner",
                 new OwnerRowMapper());
     }
 
