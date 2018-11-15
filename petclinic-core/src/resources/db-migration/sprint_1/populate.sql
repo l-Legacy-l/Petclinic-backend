@@ -1,3 +1,7 @@
+--liquibase formatted sql
+
+--changeset fabio:3
+
 USE petclinic;
 INSERT INTO vet (lastname, firstname, speciality) VALUES ("James", "James", "none");
 
