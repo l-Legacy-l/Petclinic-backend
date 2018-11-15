@@ -1,12 +1,14 @@
 target/
 bin/
-.class
 .bin
 .jar
 .json
+*.class
 !.mvn/wrapper/maven-wrapper.jar
 .gradle
 /build/
+petclinic-web/build/
+petclinic-core/build/
 !gradle/wrapper/gradle-wrapper.jar
 
 ### STS ###
