@@ -29,7 +29,7 @@ public class JdbcPetDao {
     public List<Pet> getPetType(String sort) {
         //JDBCTemplate Permet de faire la requete
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.query("SELECT type, name, birthdate, ownerFirstname,ownerLastname FROM pet WHERE type=?", 
+        return select.query("SELECT id, type, name, birthdate, ownerFirstname,ownerLastname FROM pet WHERE type=?", 
             new Object[] {sort},new PetRowMapper());
     }
 
