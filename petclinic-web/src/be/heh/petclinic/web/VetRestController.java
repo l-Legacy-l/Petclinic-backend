@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.http.ResponseEntity;
 
@@ -18,11 +20,14 @@ import be.heh.petclinic.component.vet.VetComponent;
 import be.heh.petclinic.domain.Vet;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Collection;
 
 @RestController
 
 public class VetRestController {
+
+	public String spec;
 
 	@Autowired
 	private VetComponent vetComponentImpl;
@@ -38,4 +43,17 @@ public class VetRestController {
 		}
 		return new ResponseEntity<Collection<Vet>>(vets,HttpStatus.OK);
 	}
+
+	@RequestMapping(value = "api/v1/vets/tri",params = {"speciality"}, method = RequestMethod.GET)
+	@ResponseBody
+		public ResponseEntity<Collection<Vet>> getVetsSpeciality(@RequestParam Map<String,String>param)
+		{
+			spec = param.get("speciality");
+
+			Collection<Vet> vets = vetComponentImpl.getVetsSpeciality(spec);
+			if(vets.isEmpty()){
+				return new ResponseEntity<Collection<Vet>>(HttpStatus.NOT_FOUND);
+			}
+			return new ResponseEntity<Collection<Vet>>(vets,HttpStatus.OK);
+		}
 }

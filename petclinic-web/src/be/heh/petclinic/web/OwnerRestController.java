@@ -11,6 +11,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.http.ResponseEntity;
 
 import be.heh.petclinic.component.vet.VetComponent;
@@ -25,6 +32,9 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RestController
 
 public class OwnerRestController {
+
+	public String nom;
+	public String prenom;
 
 	@Autowired
 	private OwnerComponent OwnerComponentImpl;
@@ -56,4 +66,17 @@ public class OwnerRestController {
 		OwnerComponentImpl.addOwner(firstname,lastname,address,city,telephone,pet);
 		return new ResponseEntity<Owner>(HttpStatus.CREATED);
 	}
+	@RequestMapping(value = "api/v1/owners/tri",params = {"firstname","lastname"}, method = RequestMethod.GET)
+	@ResponseBody
+		public ResponseEntity<Collection<Owner>> getOwnersName(@RequestParam Map<String,String>param)
+		{
+			nom = param.get("lastname");
+			prenom = param.get("firstname");
+
+			Collection<Owner> owners = OwnerComponentImpl.getOwnersName(prenom,nom);
+			if(owners.isEmpty()){
+				return new ResponseEntity<Collection<Owner>>(HttpStatus.NOT_FOUND);
+			}
+			return new ResponseEntity<Collection<Owner>>(owners,HttpStatus.OK);
+		}
 }
