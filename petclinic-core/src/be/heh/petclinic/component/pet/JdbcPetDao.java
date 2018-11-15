@@ -1,7 +1,8 @@
 package be.heh.petclinic.component.pet;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 import be.heh.petclinic.domain.Pet;
 import java.util.List;
@@ -12,6 +13,7 @@ public class JdbcPetDao {
     //Classe pour se connecter à la BDD et récupérer les données
 
     private DataSource dataSource;
+    public String types;
 
     public JdbcPetDao(DataSource dataSource){
         this.dataSource = dataSource;
@@ -22,6 +24,14 @@ public class JdbcPetDao {
         JdbcTemplate select = new JdbcTemplate(dataSource);
         return select.query("SELECT id,type, name, birthdate, ownerFirstname,ownerLastname FROM pet",
                 new PetRowMapper());
+    } 
+
+    public List<Pet> getPetType(String sort) {
+        //JDBCTemplate Permet de faire la requete
+        JdbcTemplate select = new JdbcTemplate(dataSource);
+        return select.query("SELECT type, name, birthdate, ownerFirstname,ownerLastname FROM pet WHERE type=?", 
+            new Object[] {sort},new PetRowMapper());
     }
+
 
 }
