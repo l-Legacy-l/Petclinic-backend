@@ -39,4 +39,11 @@ public class JdbcOwnerDao {
             new Object[] {prenom, nom},new OwnerRowMapper());
     }
 
+    public List<Owner> getOwnerById(int id) {
+        //JDBCTemplate Permet de faire la requete
+        JdbcTemplate select = new JdbcTemplate(dataSource);
+        
+        return select.query("SELECT id, firstname, lastname, address, city, telephone FROM owner WHERE id=?", new Object[] {id},new OwnerRowMapper());
+    }
+
 }

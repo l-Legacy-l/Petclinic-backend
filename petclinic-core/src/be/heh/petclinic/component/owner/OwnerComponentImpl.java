@@ -37,5 +37,12 @@ class OwnerComponentImpl implements OwnerComponent {
         return owners;
     }
 
+    @Override
+    public Collection<Owner> getOwnerById(int id) {
+        List<Owner> owners = ownerDao.getOwnerById(id);
+
+        return owners;
+    }
+
 
 }

@@ -33,8 +33,10 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 public class OwnerRestController {
 
-	public String nom;
-	public String prenom;
+	private String nom;
+	private String prenom;
+	private int id;
+
 
 	@Autowired
 	private OwnerComponent OwnerComponentImpl;
@@ -45,6 +47,19 @@ public class OwnerRestController {
 	public ResponseEntity<Collection<Owner>> getOwners(){
 
 		Collection<Owner> owners = OwnerComponentImpl.getOwners();
+		if(owners.isEmpty()){
+			return new ResponseEntity<Collection<Owner>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Collection<Owner>>(owners,HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "api/v1/owners",params = {"id"}, method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<Collection<Owner>> getOwnerById(@RequestParam Map<String,String>param)
+	{
+		id = Integer.parseInt(param.get("id"));
+
+		Collection<Owner> owners = OwnerComponentImpl.getOwnerById(id);
 		if(owners.isEmpty()){
 			return new ResponseEntity<Collection<Owner>>(HttpStatus.NOT_FOUND);
 		}
