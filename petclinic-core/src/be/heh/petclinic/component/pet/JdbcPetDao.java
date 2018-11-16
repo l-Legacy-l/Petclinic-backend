@@ -39,7 +39,7 @@ public class JdbcPetDao {
         return select.query("SELECT id, type, name, birthdate, ownerId FROM pet WHERE ownerId=?", new Object[] {ownerId}, new PetRowMapper());
     }
 
-    public int addPet(String type, String name,String birthdate,int ownerId)
+    public int addPetById(String type, String name,String birthdate,int ownerId)
     {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 

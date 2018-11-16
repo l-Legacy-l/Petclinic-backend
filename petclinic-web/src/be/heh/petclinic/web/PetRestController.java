@@ -66,7 +66,7 @@ public class PetRestController {
 		String birthdate = param.get("birthdate");
 		System.out.println(birthdate);
 
-		PetComponentImpl.addPet(type,name,birthdate,ownerId);
+		PetComponentImpl.addPetById(type,name,birthdate,ownerId);
 		return new ResponseEntity<Pet>(HttpStatus.CREATED);
 	}
 
