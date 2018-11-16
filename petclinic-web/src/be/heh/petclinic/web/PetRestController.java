@@ -56,6 +56,7 @@ public class PetRestController {
 		return new ResponseEntity<Collection<Pet>>(pets,HttpStatus.OK);
 	}
 
+	@CrossOrigin
 	@RequestMapping(value="api/v1/petInsert",params = {"type","name","birthdate","ownerId"},method = GET)
 	@ResponseBody
 	public ResponseEntity<Pet> insertPet(@RequestParam Map<String,String> param)
@@ -70,6 +71,7 @@ public class PetRestController {
 		return new ResponseEntity<Pet>(HttpStatus.CREATED);
 	}
 
+	@CrossOrigin
 	@RequestMapping(value = "api/v1/pets/tri",params = {"type"}, method = RequestMethod.GET)
 	@ResponseBody
 		public ResponseEntity<Collection<Pet>> getPetsType(@RequestParam Map<String,String>param)
@@ -82,6 +84,7 @@ public class PetRestController {
 			return new ResponseEntity<Collection<Pet>>(pets,HttpStatus.OK);
 		}
 	
+	@CrossOrigin
 	@RequestMapping(value="api/v1/pets",params = {"ownerId"},method = GET)
 	@ResponseBody
 	public ResponseEntity<Collection<Pet>> getPetsById(@RequestParam Map<String,String>param)

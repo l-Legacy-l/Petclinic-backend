@@ -44,6 +44,7 @@ public class VetRestController {
 		return new ResponseEntity<Collection<Vet>>(vets,HttpStatus.OK);
 	}
 
+	@CrossOrigin
 	@RequestMapping(value = "api/v1/vets/tri",params = {"speciality"}, method = RequestMethod.GET)
 	@ResponseBody
 		public ResponseEntity<Collection<Vet>> getVetsSpeciality(@RequestParam Map<String,String>param)

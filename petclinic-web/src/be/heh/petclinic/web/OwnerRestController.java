@@ -53,6 +53,7 @@ public class OwnerRestController {
 		return new ResponseEntity<Collection<Owner>>(owners,HttpStatus.OK);
 	}
 
+	@CrossOrigin
 	@RequestMapping(value = "api/v1/owners",params = {"id"}, method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<Collection<Owner>> getOwnerById(@RequestParam Map<String,String>param)
@@ -66,6 +67,7 @@ public class OwnerRestController {
 		return new ResponseEntity<Collection<Owner>>(owners,HttpStatus.OK);
 	}
 
+	@CrossOrigin
 	@RequestMapping(value="api/v1/ownerInsert",params = {"firstname","lastname","address","city",
 			"telephone"},method = GET)
 	@ResponseBody
@@ -80,6 +82,8 @@ public class OwnerRestController {
 		OwnerComponentImpl.addOwner(firstname,lastname,address,city,telephone);
 		return new ResponseEntity<Owner>(HttpStatus.CREATED);
 	}
+
+	@CrossOrigin
 	@RequestMapping(value = "api/v1/owners/tri",params = {"firstname","lastname"}, method = RequestMethod.GET)
 	@ResponseBody
 		public ResponseEntity<Collection<Owner>> getOwnersName(@RequestParam Map<String,String>param)
