@@ -19,8 +19,7 @@ CREATE TABLE pet (
     type varchar(45) not null,
     name varchar(45) not null,
     birthdate DATE,
-    ownerFirstname varchar(45) not null,
-    ownerLastname varchar(45) not null,
+    ownerId int not null,
     primary key (id) );
     
 DROP TABLE IF EXISTS owner;
@@ -32,5 +31,4 @@ CREATE TABLE owner (
     address char(45) not null,
     city varchar(45) not null,
     telephone varchar(45) not null,
-    pet varchar(45),
     primary key (id) );
