@@ -31,8 +31,7 @@ public class JdbcOwnerDao {
         return jdbcTemplate.update("INSERT INTO owner (firstname, lastname,address,city,telephone) VALUES(?,?,?,?,?)",
                 firstname,lastname,address,city,telephone);
     }
-
-    
+   
     public List<Owner> getOwnerName(String prenom,String nom) {
         //JDBCTemplate Permet de faire la requete
         JdbcTemplate select = new JdbcTemplate(dataSource);

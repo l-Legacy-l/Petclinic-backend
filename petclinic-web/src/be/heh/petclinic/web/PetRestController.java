@@ -34,7 +34,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 public class PetRestController {
 	private String sort;
-	private String id;
+	private int ownerId;
 
 	@Autowired
 	private PetComponent PetComponentImpl;
@@ -81,21 +81,19 @@ public class PetRestController {
 			}
 			return new ResponseEntity<Collection<Pet>>(pets,HttpStatus.OK);
 		}
+	
+	@RequestMapping(value="api/v1/pets",params = {"ownerId"},method = GET)
+	@ResponseBody
+	public ResponseEntity<Collection<Pet>> getPetsById(@RequestParam Map<String,String>param)
+	{
+		ownerId = Integer.parseInt(param.get("ownerId"));
+		Collection<Pet> pets = PetComponentImpl.getPetsById(ownerId);
+		if(pets.isEmpty()){
+			return new ResponseEntity<Collection<Pet>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Collection<Pet>>(pets,HttpStatus.OK);
 
-/*
-		@RequestMapping(value = "api/v1/owner/addPet",params = {"id"}, method = RequestMethod.GET)
-		@ResponseBody
-			public ResponseEntity<Collection<Owner>> insertPetIntoOwner(@RequestParam Map<String,String>param)
-			{
-				id =  param.get("id");
-				System.out.println(id);
-				Collection<Owner> owners = OwnerComponentImpl.getOwnerById(id);
-				if(owners.isEmpty()){
-					return new ResponseEntity<Collection<Owner>>(HttpStatus.NOT_FOUND);
-				}
-				return new ResponseEntity<Collection<Owner>>(owners,HttpStatus.OK);
-			}
-	*/
+	}
 
 		
 

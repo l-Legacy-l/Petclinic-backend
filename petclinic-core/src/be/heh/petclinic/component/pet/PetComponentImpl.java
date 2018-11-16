@@ -19,7 +19,7 @@ class PetComponentImpl implements PetComponent {
 
     @Override
     public Collection<Pet> getPets() {
-        List<Pet> pets = petDao.getEvents();
+        List<Pet> pets = petDao.getPets();
    
         return pets;
     }
@@ -31,8 +31,16 @@ class PetComponentImpl implements PetComponent {
         return pets;
     }
 
+    @Override
     public void addPet(String type, String name, String birthdate, int ownerId) {
         petDao.addPet(type, name, birthdate, ownerId);
+    }
+
+    @Override
+    public Collection<Pet> getPetsById(int ownerId) {
+        List<Pet> pets = petDao.getPetsById(ownerId);
+
+        return pets;
     }
 
 }

@@ -19,7 +19,7 @@ public class JdbcPetDao {
         this.dataSource = dataSource;
     }
 
-    public List<Pet> getEvents() {
+    public List<Pet> getPets() {
         //JDBCTemplate Permet de faire la requete
         JdbcTemplate select = new JdbcTemplate(dataSource);
         return select.query("SELECT id,type, name, birthdate,ownerId FROM pet",
@@ -33,6 +33,11 @@ public class JdbcPetDao {
             new Object[] {sort},new PetRowMapper());
     }
 
+    public List<Pet> getPetsById(int ownerId)
+    {
+        JdbcTemplate select = new JdbcTemplate(dataSource);
+        return select.query("SELECT id, type, name, birthdate, ownerId FROM pet WHERE ownerId=?", new Object[] {ownerId}, new PetRowMapper());
+    }
 
     public int addPet(String type, String name,String birthdate,int ownerId)
     {
