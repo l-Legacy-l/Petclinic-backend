@@ -2,7 +2,9 @@ package be.heh.petclinic.web;
 
 import java.util.Collection;
 
+import be.heh.petclinic.component.owner.OwnerComponent;
 import be.heh.petclinic.component.pet.PetComponent;
+import be.heh.petclinic.domain.Owner;
 import be.heh.petclinic.domain.Pet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -31,10 +33,16 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RestController
 
 public class PetRestController {
-	public String sort;
+	private String sort;
+	private String id;
 
 	@Autowired
 	private PetComponent PetComponentImpl;
+
+	@Autowired
+	private OwnerComponent OwnerComponentImpl;
+
+
     
 	//@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@CrossOrigin
@@ -48,19 +56,17 @@ public class PetRestController {
 		return new ResponseEntity<Collection<Pet>>(pets,HttpStatus.OK);
 	}
 
-	@RequestMapping(value="api/v1/petInsert",params = {"type","name","birthdate","ownerFirstname",
-			"ownerLastname"},method = GET)
+	@RequestMapping(value="api/v1/petInsert",params = {"type","name","birthdate","ownerId"},method = GET)
 	@ResponseBody
 	public ResponseEntity<Pet> insertPet(@RequestParam Map<String,String> param)
 	{
 		String type = param.get("type");
 		String name = param.get("name");
-		String ownerFirstname = param.get("ownerFirstname");
-		String ownerLastname = param.get("ownerLastname");
+		int ownerId = Integer.parseInt(param.get("ownerId"));
 		String birthdate = param.get("birthdate");
 		System.out.println(birthdate);
 
-		PetComponentImpl.addPet(type,name,birthdate,ownerFirstname,ownerLastname);
+		PetComponentImpl.addPet(type,name,birthdate,ownerId);
 		return new ResponseEntity<Pet>(HttpStatus.CREATED);
 	}
 
@@ -75,6 +81,23 @@ public class PetRestController {
 			}
 			return new ResponseEntity<Collection<Pet>>(pets,HttpStatus.OK);
 		}
+
+/*
+		@RequestMapping(value = "api/v1/owner/addPet",params = {"id"}, method = RequestMethod.GET)
+		@ResponseBody
+			public ResponseEntity<Collection<Owner>> insertPetIntoOwner(@RequestParam Map<String,String>param)
+			{
+				id =  param.get("id");
+				System.out.println(id);
+				Collection<Owner> owners = OwnerComponentImpl.getOwnerById(id);
+				if(owners.isEmpty()){
+					return new ResponseEntity<Collection<Owner>>(HttpStatus.NOT_FOUND);
+				}
+				return new ResponseEntity<Collection<Owner>>(owners,HttpStatus.OK);
+			}
+	*/
+
+		
 
 	
 }

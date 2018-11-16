@@ -52,7 +52,7 @@ public class OwnerRestController {
 	}
 
 	@RequestMapping(value="api/v1/ownerInsert",params = {"firstname","lastname","address","city",
-			"telephone","pet"},method = GET)
+			"telephone"},method = GET)
 	@ResponseBody
 	public ResponseEntity<Owner> insertPet(@RequestParam Map<String,String> param)
 	{
@@ -61,9 +61,8 @@ public class OwnerRestController {
 		String address = param.get("address");
 		String city = param.get("city");
 		String telephone = param.get("telephone");
-		String pet = param.get("pet");
 
-		OwnerComponentImpl.addOwner(firstname,lastname,address,city,telephone,pet);
+		OwnerComponentImpl.addOwner(firstname,lastname,address,city,telephone);
 		return new ResponseEntity<Owner>(HttpStatus.CREATED);
 	}
 	@RequestMapping(value = "api/v1/owners/tri",params = {"firstname","lastname"}, method = RequestMethod.GET)

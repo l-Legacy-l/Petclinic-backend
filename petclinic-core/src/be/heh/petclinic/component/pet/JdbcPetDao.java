@@ -22,27 +22,23 @@ public class JdbcPetDao {
     public List<Pet> getEvents() {
         //JDBCTemplate Permet de faire la requete
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.query("SELECT id,type, name, birthdate, ownerFirstname,ownerLastname FROM pet",
+        return select.query("SELECT id,type, name, birthdate,ownerId FROM pet",
                 new PetRowMapper());
     } 
 
     public List<Pet> getPetType(String sort) {
         //JDBCTemplate Permet de faire la requete
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.query("SELECT id, type, name, birthdate, ownerFirstname,ownerLastname FROM pet WHERE type=?", 
+        return select.query("SELECT id, type, name, birthdate, ownerId FROM pet WHERE type=?", 
             new Object[] {sort},new PetRowMapper());
     }
 
 
-    public int addPet(String type, String name,String birthdate,String ownerFirstname,String ownerLastname)
+    public int addPet(String type, String name,String birthdate,int ownerId)
     {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
-        return jdbcTemplate.update("INSERT INTO pet (type, name,birthdate,ownerFirstname,ownerLastname) VALUES(?,?,?,?,?)",
-                type,name,birthdate,ownerFirstname,ownerLastname);
+        return jdbcTemplate.update("INSERT INTO pet (type, name,birthdate,ownerId) VALUES(?,?,?,?)",
+                type,name,birthdate,ownerId);
     }
-
-
-
-
 }
