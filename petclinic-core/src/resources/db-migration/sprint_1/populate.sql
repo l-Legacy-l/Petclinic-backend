@@ -9,11 +9,11 @@ INSERT INTO vet (lastname, firstname, speciality) VALUES ("Helen", "Helen", "rad
 
 INSERT INTO vet (lastname, firstname, speciality) VALUES ("Linda", "Linda", "surgery");
 
-INSERT INTO pet (type, name, birthdate,ownerId) VALUES ("Chien", "Medor", "2016-04-12","Timothée","3");
+INSERT INTO pet (type, name, birthdate,ownerId) VALUES ("Chien", "Medor", "2016-04-12","3");
 
-INSERT INTO pet (type, name, birthdate,ownerId) VALUES ("Chat", "Flo", "2011-08-08","Fabio","Gates","1");
+INSERT INTO pet (type, name, birthdate,ownerId) VALUES ("Chat", "Flo", "2011-08-08","1");
 
-INSERT INTO pet (type, name, birthdate,ownerId) VALUES ("Tortue", "Tortette", "2014-08-23","Alexandre","Cook","2");
+INSERT INTO pet (type, name, birthdate,ownerId) VALUES ("Tortue", "Tortette", "2014-08-23","2");
 
 INSERT INTO owner (lastname, firstname, address, city, telephone) VALUES("Nick", "Nick", "49 Rue de la paix", "Paris", "0494012345");
 
