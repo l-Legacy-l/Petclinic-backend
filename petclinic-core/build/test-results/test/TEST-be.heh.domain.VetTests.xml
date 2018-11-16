@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="be.heh.domain.VetTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-11-14T14:33:15" hostname="DESKTOP-HH3DGV8" time="0.01">
+<testsuite name="be.heh.domain.VetTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-11-16T08:04:18" hostname="DESKTOP-HH3DGV8" time="0.035">
   <properties/>
-  <testcase name="test_object_vet()" classname="be.heh.domain.VetTests" time="0.01"/>
+  <testcase name="test_object_vet()" classname="be.heh.domain.VetTests" time="0.035"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
