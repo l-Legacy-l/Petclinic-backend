@@ -32,3 +32,12 @@ CREATE TABLE owner (
     city varchar(45) not null,
     telephone varchar(45) not null,
     primary key (id) );
+
+DROP TABLE IF EXISTS visit;
+
+CREATE TABLE visit (
+    id int NOT NULL AUTO_INCREMENT,
+    date varchar(45) not null,
+    description varchar(45) not null,
+    petId int not null,
+    primary key (id) );
