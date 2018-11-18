@@ -47,34 +47,18 @@ public class VisitRestController {
 		}
 		return new ResponseEntity<Collection<Visit>>(Visits,HttpStatus.OK);
 	}
-/*
-	@RequestMapping(value="api/v1/VisitInsert",params = {"firstname","lastname","address","city",
-			"telephone"},method = GET)
-	@ResponseBody
-	public ResponseEntity<Visit> insertPet(@RequestParam Map<String,String> param)
-	{
-		String firstname = param.get("firstname");
-		String lastname = param.get("lastname");
-		String address = param.get("address");
-		String city = param.get("city");
-		String telephone = param.get("telephone");
 
-		VisitRestController.addVisit(firstname,lastname,address,city,telephone);
+	@CrossOrigin
+	@RequestMapping(value="api/v1/visitInsert",params = {"date","description","petId"},method = GET)
+	@ResponseBody
+	public ResponseEntity<Visit> insertVisit(@RequestParam Map<String,String> param)
+	{
+		String date = param.get("date");
+		String description = param.get("description");
+		int petId = Integer.parseInt(param.get("petId"));
+
+		VisitRestController.addVisit(date,description,petId);
 		return new ResponseEntity<Visit>(HttpStatus.CREATED);
     }
-    
-	@RequestMapping(value = "api/v1/Visits/tri",params = {"firstname","lastname"}, method = RequestMethod.GET)
-	@ResponseBody
-		public ResponseEntity<Collection<Visit>> getVisitsName(@RequestParam Map<String,String>param)
-		{
-			nom = param.get("lastname");
-			prenom = param.get("firstname");
-
-			Collection<Visit> Visits = VisitRestController.getVisitsName(prenom,nom);
-			if(Visits.isEmpty()){
-				return new ResponseEntity<Collection<Visit>>(HttpStatus.NOT_FOUND);
-			}
-			return new ResponseEntity<Collection<Visit>>(Visits,HttpStatus.OK);
-        }
-        */
+         
 }

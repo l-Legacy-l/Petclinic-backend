@@ -30,6 +30,13 @@ public class JdbcVisitDao {
             
     }
 
+	public int addVisit(String date, String description, int petId) {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        return jdbcTemplate.update("INSERT INTO visit (date, description,petId) VALUES(?,?,?)",
+        date,description,petId);
+	}
+
 
 }
 

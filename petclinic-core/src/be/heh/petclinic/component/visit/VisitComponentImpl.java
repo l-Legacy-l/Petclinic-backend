@@ -28,9 +28,11 @@ class VisitComponentImpl implements VisitComponent {
         return visits;
     }
 
+
     @Override
-    public void addVisitByPetId(int petId) {
-        
+    public void addVisit(String date, String description, int petId) {
+
+        visitDao.addVisit(date,description,petId);
     }
 
 
