@@ -21,11 +21,11 @@ INSERT INTO owner (lastname, firstname, address, city, telephone) VALUES("Jane",
 
 INSERT INTO owner (lastname, firstname, address, city, telephone) VALUES("Jim", "Jim", "51 Rue de la fosse", "Bruxelles", "0494234567");
 
-INSERT INTO visit (date, description, petId) VALUES ("2012-12-24", "Tim est un dieu", "4");
+INSERT INTO visit (date, description, petId) VALUES ("2012-12-24", "description de visite 1", "4");
 
-INSERT INTO visit (date, description, petId) VALUES ("2012-12-24", "Tim est un dieu", "3");
+INSERT INTO visit (date, description, petId) VALUES ("2013-11-24", "description de visite 2", "3");
 
-INSERT INTO visit (date, description, petId) VALUES ("2012-12-24", "Tim est un dieu", "2");
+INSERT INTO visit (date, description, petId) VALUES ("2009-09-18", "description de visite 3", "2");
 
-INSERT INTO visit (date, description, petId) VALUES ("2012-12-24", "Tim est un dieu", "1");
+INSERT INTO visit (date, description, petId) VALUES ("2015-01-02", "description de visite 4", "1");
 
