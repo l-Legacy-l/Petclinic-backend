@@ -12,4 +12,6 @@ public interface PetComponent{
     Collection<Pet> getPetsType(String sort);
     void addPetById(String type, String name, String birthdate, int ownerId);
     Collection<Pet> getPetsById(int ownerId);
+    void deletePet(int id);
+
 }

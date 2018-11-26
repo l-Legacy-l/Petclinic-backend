@@ -46,4 +46,12 @@ public class JdbcPetDao {
         return jdbcTemplate.update("INSERT INTO pet (type, name,birthdate,ownerId) VALUES(?,?,?,?)",
                 type,name,birthdate,ownerId);
     }
+
+    public int deletePet(int id)
+    {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        return jdbcTemplate.update("DELETE FROM pet WHERE id=?",id);
+    }
+    
 }

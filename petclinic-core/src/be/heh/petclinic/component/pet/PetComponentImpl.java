@@ -43,4 +43,10 @@ class PetComponentImpl implements PetComponent {
         return pets;
     }
 
+    @Override
+    public void deletePet(int id) {
+        petDao.deletePet(id);
+
+    }
+
 }

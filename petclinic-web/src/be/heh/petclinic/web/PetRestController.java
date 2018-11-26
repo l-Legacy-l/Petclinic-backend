@@ -98,6 +98,17 @@ public class PetRestController {
 
 	}
 
+	@CrossOrigin
+	@RequestMapping(value="api/v1/petDelete",params = {"id"},method = GET)
+	@ResponseBody
+	public ResponseEntity<Pet> deletePet(@RequestParam Map<String,String> param)
+	{
+		int id = Integer.parseInt(param.get("id"));
+
+		PetComponentImpl.deletePet(id);
+		return new ResponseEntity<Pet>(HttpStatus.CREATED);
+	}
+
 		
 
 	
