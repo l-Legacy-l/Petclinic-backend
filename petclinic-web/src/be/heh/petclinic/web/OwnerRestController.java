@@ -71,7 +71,7 @@ public class OwnerRestController {
 	@RequestMapping(value="api/v1/ownerInsert",params = {"firstname","lastname","address","city",
 			"telephone"},method = GET)
 	@ResponseBody
-	public ResponseEntity<Owner> insertPet(@RequestParam Map<String,String> param)
+	public ResponseEntity<Owner> insertOwner(@RequestParam Map<String,String> param)
 	{
 		String firstname = param.get("firstname");
 		String lastname = param.get("lastname");
@@ -96,5 +96,17 @@ public class OwnerRestController {
 				return new ResponseEntity<Collection<Owner>>(HttpStatus.NOT_FOUND);
 			}
 			return new ResponseEntity<Collection<Owner>>(owners,HttpStatus.OK);
+		}
+
+	
+		@CrossOrigin
+		@RequestMapping(value="api/v1/ownerDelete",params = {"id"},method = GET)
+		@ResponseBody
+		public ResponseEntity<Owner> deleteOwner(@RequestParam Map<String,String> param)
+		{
+			int id = Integer.parseInt(param.get("id"));
+	
+			OwnerComponentImpl.deleteOwner(id);
+			return new ResponseEntity<Owner>(HttpStatus.CREATED);
 		}
 }

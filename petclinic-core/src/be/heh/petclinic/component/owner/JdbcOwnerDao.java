@@ -46,4 +46,11 @@ public class JdbcOwnerDao {
         return select.query("SELECT id, firstname, lastname, address, city, telephone FROM owner WHERE id=?", new Object[] {id},new OwnerRowMapper());
     }
 
+    public int deleteOwner(int id)
+    {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        return jdbcTemplate.update("DELETE FROM owner WHERE id=?",id);
+    }
+
 }

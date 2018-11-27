@@ -10,5 +10,6 @@ public interface OwnerComponent{
     void addOwner(String firstname,String lastname, String address,String city,String telephone);
     Collection<Owner> getOwnersName(String prenom,String nom);
     Collection<Owner> getOwnerById(int id);
+    void deleteOwner(int id);
 
 }

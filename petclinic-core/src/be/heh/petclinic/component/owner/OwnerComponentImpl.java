@@ -44,5 +44,10 @@ class OwnerComponentImpl implements OwnerComponent {
         return owners;
     }
 
+    @Override
+    public void deleteOwner(int id) {
+        ownerDao.deleteOwner(id);
+    }
+
 
 }
