@@ -20,7 +20,10 @@ CREATE TABLE pet (
     name varchar(45) not null,
     birthdate DATE,
     ownerId int not null,
-    primary key (id) );
+    primary key (id),
+    CONSTRAINT FK_OwnerPet 
+    FOREIGN KEY (ownerId) 
+    REFERENCES owner(id) ON DELETE CASCADE);
     
 DROP TABLE IF EXISTS owner;
 
@@ -40,4 +43,7 @@ CREATE TABLE visit (
     date DATE not null,
     description varchar(45) not null,
     petId int not null,
-    primary key (id) );
+    primary key (id),
+    CONSTRAINT FK_PetVisit 
+    FOREIGN KEY (petId) 
+    REFERENCES pet(id) ON DELETE CASCADE );
