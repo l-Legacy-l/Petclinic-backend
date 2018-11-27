@@ -35,5 +35,10 @@ class VisitComponentImpl implements VisitComponent {
         visitDao.addVisit(date,description,petId);
     }
 
+    @Override
+    public void deleteVisit(int id) {
+        visitDao.deleteVisit(id);
+    }
+
 
 }

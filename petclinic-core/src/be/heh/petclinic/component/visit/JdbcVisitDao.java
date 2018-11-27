@@ -37,6 +37,12 @@ public class JdbcVisitDao {
         date,description,petId);
 	}
 
+    public int deleteVisit(int id) {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        return jdbcTemplate.update("DELETE FROM visit WHERE id=?",id);
+
+	}
 
 }
 

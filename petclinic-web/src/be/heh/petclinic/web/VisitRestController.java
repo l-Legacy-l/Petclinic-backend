@@ -59,6 +59,18 @@ public class VisitRestController {
 
 		VisitRestController.addVisit(date,description,petId);
 		return new ResponseEntity<Visit>(HttpStatus.CREATED);
-    }
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value="api/v1/visitDelete",params = {"id"},method = GET)
+	@ResponseBody
+	public ResponseEntity<Visit> deleteVisit(@RequestParam Map<String,String> param)
+	{
+		int id = Integer.parseInt(param.get("id"));
+
+		VisitRestController.deleteVisit(id);
+		return new ResponseEntity<Visit>(HttpStatus.CREATED);
+	}
+
          
 }
