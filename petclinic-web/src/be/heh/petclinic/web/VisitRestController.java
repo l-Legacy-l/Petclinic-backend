@@ -34,14 +34,14 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 public class VisitRestController {
     
 	@Autowired
-	private VisitComponent VisitRestController;
+	private VisitComponent VisitComponentImpl;
 
 	//@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@CrossOrigin
 	@RequestMapping("api/v1/visits")
 	public ResponseEntity<Collection<Visit>> getVisits(){
 
-		Collection<Visit> Visits = VisitRestController.getVisits();
+		Collection<Visit> Visits = VisitComponentImpl.getVisits();
 		if(Visits.isEmpty()){
 			return new ResponseEntity<Collection<Visit>>(HttpStatus.NOT_FOUND);
 		}
@@ -57,7 +57,7 @@ public class VisitRestController {
 		String description = param.get("description");
 		int petId = Integer.parseInt(param.get("petId"));
 
-		VisitRestController.addVisit(date,description,petId);
+		VisitComponentImpl.addVisit(date,description,petId);
 		return new ResponseEntity<Visit>(HttpStatus.CREATED);
 	}
 	
@@ -68,7 +68,7 @@ public class VisitRestController {
 	{
 		int id = Integer.parseInt(param.get("id"));
 
-		VisitRestController.deleteVisit(id);
+		VisitComponentImpl.deleteVisit(id);
 		return new ResponseEntity<Visit>(HttpStatus.CREATED);
 	}
 
