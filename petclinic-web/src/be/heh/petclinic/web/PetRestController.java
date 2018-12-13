@@ -87,10 +87,10 @@ public class PetRestController {
 	@CrossOrigin
 	@RequestMapping(value="api/v1/pets",params = {"ownerId"},method = GET)
 	@ResponseBody
-	public ResponseEntity<Collection<Pet>> getPetsById(@RequestParam Map<String,String>param)
+	public ResponseEntity<Collection<Pet>> getPetByOwnerId(@RequestParam Map<String,String>param)
 	{
 		ownerId = Integer.parseInt(param.get("ownerId"));
-		Collection<Pet> pets = PetComponentImpl.getPetsById(ownerId);
+		Collection<Pet> pets = PetComponentImpl.getPetByOwnerId(ownerId);
 		if(pets.isEmpty()){
 			return new ResponseEntity<Collection<Pet>>(HttpStatus.NOT_FOUND);
 		}
@@ -108,8 +108,4 @@ public class PetRestController {
 		PetComponentImpl.deletePet(id);
 		return new ResponseEntity<Pet>(HttpStatus.CREATED);
 	}
-
-		
-
-	
 }
