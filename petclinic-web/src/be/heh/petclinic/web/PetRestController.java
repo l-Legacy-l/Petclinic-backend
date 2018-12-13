@@ -35,6 +35,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 public class PetRestController {
 	private String sort;
 	private int ownerId;
+	private int id;
 
 	@Autowired
 	private PetComponent PetComponentImpl;
@@ -91,6 +92,20 @@ public class PetRestController {
 	{
 		ownerId = Integer.parseInt(param.get("ownerId"));
 		Collection<Pet> pets = PetComponentImpl.getPetByOwnerId(ownerId);
+		if(pets.isEmpty()){
+			return new ResponseEntity<Collection<Pet>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Collection<Pet>>(pets,HttpStatus.OK);
+
+	}
+
+	@CrossOrigin
+	@RequestMapping(value="api/v1/pets",params = {"id"},method = GET)
+	@ResponseBody
+	public ResponseEntity<Collection<Pet>> getPetById(@RequestParam Map<String,String>param)
+	{
+		id = Integer.parseInt(param.get("id"));
+		Collection<Pet> pets = PetComponentImpl.getPetById(id);
 		if(pets.isEmpty()){
 			return new ResponseEntity<Collection<Pet>>(HttpStatus.NOT_FOUND);
 		}

@@ -33,6 +33,12 @@ public class JdbcPetDao {
             new Object[] {sort},new PetRowMapper());
     }
 
+    public List<Pet> getPetById(int id)
+    {
+        JdbcTemplate select = new JdbcTemplate(dataSource);
+        return select.query("SELECT id, type, name, birthdate, ownerId FROM pet WHERE id=?", new Object[] {id}, new PetRowMapper());
+    }
+
     public List<Pet> getPetByOwnerId(int ownerId)
     {
         JdbcTemplate select = new JdbcTemplate(dataSource);

@@ -49,4 +49,11 @@ class PetComponentImpl implements PetComponent {
 
     }
 
+    @Override
+    public Collection<Pet> getPetById(int id) {
+        List<Pet> pets = petDao.getPetById(id);
+
+        return pets;
+    }
+
 }
