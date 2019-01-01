@@ -40,5 +40,10 @@ class VisitComponentImpl implements VisitComponent {
         visitDao.deleteVisit(id);
     }
 
+	@Override
+	public Collection<Visit> getVisitById(int ind) {
+		return null;
+	}
+
 
 }

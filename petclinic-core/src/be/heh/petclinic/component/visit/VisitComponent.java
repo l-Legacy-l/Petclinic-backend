@@ -9,5 +9,6 @@ public interface VisitComponent{
     Collection<Visit> getVisits();
     Collection<Visit> getVisitsByPetId(int petId);
     void addVisit(String date, String description,int petId);
+    Collection<Visit> getVisitById(int ind);
     void deleteVisit(int id);
 }

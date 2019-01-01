@@ -60,6 +60,8 @@ public class VisitRestController {
 		VisitComponentImpl.addVisit(date,description,petId);
 		return new ResponseEntity<Visit>(HttpStatus.CREATED);
 	}
+
+	
 	
 	@CrossOrigin
 	@RequestMapping(value="api/v1/visitDelete",params = {"id"},method = GET)
@@ -72,5 +74,18 @@ public class VisitRestController {
 		return new ResponseEntity<Visit>(HttpStatus.CREATED);
 	}
 
-         
+	@CrossOrigin
+	@RequestMapping(value="api/v1/visit",params = {"id"},method = GET)
+	@ResponseBody
+	public ResponseEntity<Collection<Visit>> getPetById(@RequestParam Map<String,String>param)
+	{
+		int id = Integer.parseInt(param.get("id"));
+		Collection<Visit> visit = VisitComponentImpl.getVisitById(id);
+		if(visit.isEmpty()){
+			return new ResponseEntity<Collection<Visit>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Collection<Visit>>(visit,HttpStatus.OK);
+
+	}
+ 
 }
