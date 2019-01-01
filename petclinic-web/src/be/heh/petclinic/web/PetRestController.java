@@ -91,7 +91,7 @@ public class PetRestController {
 	public ResponseEntity<Collection<Pet>> getPetByOwnerId(@RequestParam Map<String,String>param)
 	{
 		ownerId = Integer.parseInt(param.get("ownerId"));
-		Collection<Pet> pets = PetComponentImpl.getPetByOwnerId(ownerId);
+		Collection<Pet> pets = PetComponentImpl.getPetsByOwnerId(ownerId);
 		if(pets.isEmpty()){
 			return new ResponseEntity<Collection<Pet>>(HttpStatus.NOT_FOUND);
 		}
