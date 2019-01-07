@@ -29,6 +29,12 @@ public class JdbcVisitDao {
         return select.query("SELECT * FROM visit WHERE petId=?",new Object[] {petId}, new VisitRowMapper());      
     }
 
+    public List<Visit> getVisitsByVetId(int vetId) {
+        //JDBCTemplate Permet de faire la requete
+        JdbcTemplate select = new JdbcTemplate(dataSource);
+        return select.query("SELECT * FROM visit WHERE vetId=?",new Object[] {vetId}, new VisitRowMapper());      
+    }
+
     public List<Visit> getVisitById(int id) {
         JdbcTemplate select = new JdbcTemplate(dataSource);
         return select.query("SELECT * FROM visit WHERE id=?",new Object[] {id},
@@ -41,11 +47,11 @@ public class JdbcVisitDao {
          new VisitRowMapper());      
     }
 
-	public int addVisit(String date, String description, int petId) {
+	public int addVisit(String date, String description, int petId, int vetId) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
-        return jdbcTemplate.update("INSERT INTO visit (date, description,petId) VALUES(?,?,?)",
-        date,description,petId);
+        return jdbcTemplate.update("INSERT INTO visit (date, description,petId,vetId) VALUES(?,?,?,?)",
+        date,description,petId,vetId);
 	}
 
     public int deleteVisit(int id) {
@@ -54,10 +60,10 @@ public class JdbcVisitDao {
         return jdbcTemplate.update("DELETE FROM visit WHERE id=?",id);
     }
     
-    public int updateVisit(int id, String date, String description, int petId) {
+    public int updateVisit(int id, String date, String description, int petId, int vetId) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
-        return jdbcTemplate.update("UPDATE visit SET date=?, description=?, petId=? WHERE id=?", date, description,petId, id);
+        return jdbcTemplate.update("UPDATE visit SET date=?, description=?, petId=?, vetId=? WHERE id=?", date, description,petId, vetId,id);
 	}
 
 }

@@ -28,11 +28,17 @@ class VisitComponentImpl implements VisitComponent {
         return visits;
     }
 
+    @Override
+    public Collection<Visit> getVisitsByVetId(int vetId) {
+        List<Visit> visits = visitDao.getVisitsByPetId(vetId);
+
+        return visits;
+    }
 
     @Override
-    public void addVisit(String date, String description, int petId) {
+    public void addVisit(String date, String description, int petId, int vetId) {
 
-        visitDao.addVisit(date,description,petId);
+        visitDao.addVisit(date,description,petId,vetId);
     }
 
     @Override
@@ -55,8 +61,8 @@ class VisitComponentImpl implements VisitComponent {
     }
 
     @Override
-    public void updateVisit(int id, String date, String description, int petId) {
-        visitDao.updateVisit(id, date, description, petId);
+    public void updateVisit(int id, String date, String description, int petId, int vetId) {
+        visitDao.updateVisit(id, date, description, petId, vetId);
     }
 
 

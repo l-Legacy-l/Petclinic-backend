@@ -49,15 +49,16 @@ public class VisitRestController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value="api/v1/visitInsert",params = {"date","description","petId"},method = GET)
+	@RequestMapping(value="api/v1/visitInsert",params = {"date","description","petId","vetId"},method = GET)
 	@ResponseBody
 	public ResponseEntity<Visit> insertVisit(@RequestParam Map<String,String> param)
 	{
 		String date = param.get("date");
 		String description = param.get("description");
 		int petId = Integer.parseInt(param.get("petId"));
+		int vetId = Integer.parseInt(param.get("vetId"));
 
-		VisitComponentImpl.addVisit(date,description,petId);
+		VisitComponentImpl.addVisit(date,description,petId,vetId);
 		return new ResponseEntity<Visit>(HttpStatus.CREATED);
 	}
 
@@ -99,7 +100,7 @@ public class VisitRestController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value="api/v1/visitUpdate",params = {"id","date","description","petId"},method = GET)
+	@RequestMapping(value="api/v1/visitUpdate",params = {"id","date","description","petId","vetId"},method = GET)
 	@ResponseBody
 	public ResponseEntity<Visit> updateVisit(@RequestParam Map<String,String> param)
 	{
@@ -107,8 +108,9 @@ public class VisitRestController {
 		String description = param.get("description");
 		int petId = Integer.parseInt(param.get("petId"));
 		int id = Integer.parseInt(param.get("id"));
+		int vetId = Integer.parseInt(param.get("id"));
 
-		VisitComponentImpl.updateVisit(id,date,description,petId);
+		VisitComponentImpl.updateVisit(id,date,description,petId, vetId);
 		return new ResponseEntity<Visit>(HttpStatus.CREATED);
 	}
 }
