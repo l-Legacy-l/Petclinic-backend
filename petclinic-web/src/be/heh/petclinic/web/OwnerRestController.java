@@ -96,7 +96,24 @@ public class OwnerRestController {
 			return new ResponseEntity<Collection<Owner>>(owners,HttpStatus.OK);
 		}
 
+
+		@CrossOrigin
+		@RequestMapping(value="api/v1/ownerUpdate",params = {"id","firstname","lastname","address","city",
+				"telephone"},method = GET)
+		@ResponseBody
+		public ResponseEntity<Owner> updateOwner(@RequestParam Map<String,String> param)
+		{
+			id = Integer.parseInt(param.get("id"));
+			String firstname = param.get("firstname");
+			String lastname = param.get("lastname");
+			String address = param.get("address");
+			String city = param.get("city");
+			String telephone = param.get("telephone");
 	
+			OwnerComponentImpl.updateOwner(id,firstname,lastname,address,city,telephone);
+			return new ResponseEntity<Owner>(HttpStatus.CREATED);
+		}
+
 		@CrossOrigin
 		@RequestMapping(value="api/v1/ownerDelete",params = {"id"},method = GET)
 		@ResponseBody

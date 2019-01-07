@@ -11,5 +11,6 @@ public interface OwnerComponent{
     Collection<Owner> getOwnerById(int id);
     Collection<Owner> getOwnersBySearch(String search);
     void deleteOwner(int id);
+    void updateOwner(int id, String firstname,String lastname, String address,String city,String telephone);
 
 }

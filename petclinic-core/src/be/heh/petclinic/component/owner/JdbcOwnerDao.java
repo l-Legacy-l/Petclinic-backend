@@ -60,4 +60,11 @@ public class JdbcOwnerDao {
         return jdbcTemplate.update("DELETE FROM owner WHERE id=?",id);
     }
 
+    public int updateOwner(int id, String firstname, String lastname,String address,String city,String telephone)
+    {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        return jdbcTemplate.update("UPDATE owner SET firstname=?, lastname=?, address=?, city=?, telephone=? WHERE id=?",
+        firstname,lastname,address,city,telephone, id);
+    }
 }

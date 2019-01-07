@@ -47,4 +47,9 @@ class OwnerComponentImpl implements OwnerComponent {
     public void deleteOwner(int id) {
         ownerDao.deleteOwner(id);
     }
+
+    @Override
+    public void updateOwner(int id ,String firstname, String lastname, String address, String city, String telephone) {
+        ownerDao.updateOwner(id, firstname, lastname, address, city,telephone);
+    }
 }
