@@ -61,8 +61,19 @@ public class VisitRestController {
 		return new ResponseEntity<Visit>(HttpStatus.CREATED);
 	}
 
-	
-	
+	@CrossOrigin
+	@RequestMapping(value="api/v1/visits",params = {"search"},method = GET)
+	@ResponseBody
+	public ResponseEntity<Collection<Visit>> getVisitsBySearch(@RequestParam Map<String,String>param)
+	{
+		String search = param.get("search");
+		Collection<Visit> visits = VisitComponentImpl.getVisitsBySearch(search);
+		if(visits.isEmpty()){
+			return new ResponseEntity<Collection<Visit>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Collection<Visit>>(visits,HttpStatus.OK);
+	}
+
 	@CrossOrigin
 	@RequestMapping(value="api/v1/visitDelete",params = {"id"},method = GET)
 	@ResponseBody
@@ -85,7 +96,6 @@ public class VisitRestController {
 			return new ResponseEntity<Collection<Visit>>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<Collection<Visit>>(visits,HttpStatus.OK);
-
 	}
  
 }

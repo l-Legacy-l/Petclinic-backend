@@ -23,8 +23,8 @@ class VisitComponentImpl implements VisitComponent {
 
     @Override
     public Collection<Visit> getVisitsByPetId(int petId) {
-
         List<Visit> visits = visitDao.getVisitsByPetId(petId);
+
         return visits;
     }
 
@@ -44,6 +44,13 @@ class VisitComponentImpl implements VisitComponent {
 	public Collection<Visit> getVisitById(int ind) {
 		return null;
 	}
+
+    @Override
+    public Collection<Visit> getVisitsBySearch(String search) {
+        List<Visit> visits = visitDao.getVisitsBySearch(search);
+        
+        return visits;
+    }
 
 
 }
