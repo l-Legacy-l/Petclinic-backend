@@ -33,7 +33,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RestController
 
 public class PetRestController {
-	private String sort;
+	private String search;
 	private int ownerId;
 	private int id;
 
@@ -73,12 +73,12 @@ public class PetRestController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "api/v1/pets/tri",params = {"type"}, method = RequestMethod.GET)
+	@RequestMapping(value = "api/v1/pets",params = {"search"}, method = RequestMethod.GET)
 	@ResponseBody
 		public ResponseEntity<Collection<Pet>> getPetsType(@RequestParam Map<String,String>param)
 		{
-			sort = param.get("type");
-			Collection<Pet> pets = PetComponentImpl.getPetsType(sort);
+			search = param.get("search");
+			Collection<Pet> pets = PetComponentImpl.getPetsBySearch(search);
 			if(pets.isEmpty()){
 				return new ResponseEntity<Collection<Pet>>(HttpStatus.NOT_FOUND);
 			}

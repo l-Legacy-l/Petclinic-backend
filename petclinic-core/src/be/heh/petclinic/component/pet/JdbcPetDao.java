@@ -26,11 +26,11 @@ public class JdbcPetDao {
                 new PetRowMapper());
     } 
 
-    public List<Pet> getPetType(String sort) {
+    public List<Pet> getPetsBySearch(String search) {
         //JDBCTemplate Permet de faire la requete
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.query("SELECT id, type, name, birthdate, ownerId FROM pet WHERE type=?", 
-            new Object[] {sort},new PetRowMapper());
+        return select.query("SELECT id, type, name, birthdate, ownerId FROM pet WHERE type=? OR name=? OR birthdate=? ", 
+            new Object[] {search, search, search},new PetRowMapper());
     }
 
     public List<Pet> getPetById(int id)

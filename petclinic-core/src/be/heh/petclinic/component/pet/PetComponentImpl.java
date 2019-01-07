@@ -25,8 +25,8 @@ class PetComponentImpl implements PetComponent {
     }
 
     @Override
-    public Collection<Pet> getPetsType(String sort){
-        List<Pet> pets = petDao.getPetType(sort);
+    public Collection<Pet> getPetsBySearch(String search){
+        List<Pet> pets = petDao.getPetsBySearch(search);
 
         return pets;
     }
