@@ -33,8 +33,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 public class OwnerRestController {
 
-	private String nom;
-	private String prenom;
+	private String search;
 	private int id;
 
 
@@ -84,14 +83,13 @@ public class OwnerRestController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "api/v1/owners/tri",params = {"firstname","lastname"}, method = RequestMethod.GET)
+	@RequestMapping(value = "api/v1/owners",params = {"search"}, method = RequestMethod.GET)
 	@ResponseBody
-		public ResponseEntity<Collection<Owner>> getOwnersName(@RequestParam Map<String,String>param)
+		public ResponseEntity<Collection<Owner>> getOwnersBySearch(@RequestParam Map<String,String>param)
 		{
-			nom = param.get("lastname");
-			prenom = param.get("firstname");
+			search = param.get("search");
 
-			Collection<Owner> owners = OwnerComponentImpl.getOwnersName(prenom,nom);
+			Collection<Owner> owners = OwnerComponentImpl.getOwnersBySearch(search);
 			if(owners.isEmpty()){
 				return new ResponseEntity<Collection<Owner>>(HttpStatus.NOT_FOUND);
 			}

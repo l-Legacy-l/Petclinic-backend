@@ -46,6 +46,13 @@ public class JdbcOwnerDao {
         return select.query("SELECT id, firstname, lastname, address, city, telephone FROM owner WHERE id=?", new Object[] {id},new OwnerRowMapper());
     }
 
+    public List<Owner> getOwnersBySearch(String search) {
+        JdbcTemplate select = new JdbcTemplate(dataSource);
+        
+        return select.query("SELECT * FROM owner WHERE firstname=? OR lastname=? OR address=? OR city=? OR telephone=?",
+         new Object[] {search,search,search,search,search},new OwnerRowMapper());
+    }
+
     public int deleteOwner(int id)
     {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);

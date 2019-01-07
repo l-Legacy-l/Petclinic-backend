@@ -27,12 +27,11 @@ class OwnerComponentImpl implements OwnerComponent {
     public void addOwner(String firstname,String lastname, String address,String city,String telephone)
     {
         ownerDao.addOwner(firstname, lastname, address, city,telephone);
-
     }
 
     @Override
-    public Collection<Owner> getOwnersName(String prenom,String nom){
-        List<Owner> owners = ownerDao.getOwnerName(prenom,nom);
+    public Collection<Owner> getOwnersBySearch(String search){
+        List<Owner> owners = ownerDao.getOwnersBySearch(search);
 
         return owners;
     }
@@ -48,6 +47,4 @@ class OwnerComponentImpl implements OwnerComponent {
     public void deleteOwner(int id) {
         ownerDao.deleteOwner(id);
     }
-
-
 }
