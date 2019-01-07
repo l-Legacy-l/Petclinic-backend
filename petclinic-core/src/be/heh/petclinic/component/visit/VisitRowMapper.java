@@ -16,7 +16,7 @@ public class VisitRowMapper implements RowMapper<Visit> {
     @Override
     public Visit mapRow(ResultSet rs,int i) throws SQLException {
          //on fait le mapping
-        Visit visit = new Visit(rs.getInt("id"),rs.getString("date"),rs.getString("description"),rs.getInt("petId"));
+        Visit visit = new Visit(rs.getInt("id"),rs.getString("date"),rs.getString("description"),rs.getInt("petId"), rs.getInt("vetId"));
         return visit;
     }
 

@@ -6,13 +6,15 @@ public class Visit {
     private String description;
     private int petId;
     private int id;
+    private int vetId;
 
-    public Visit(int id, String date, String description,int petId)
+    public Visit(int id, String date, String description,int petId, int vetId)
     {
         this.id = id;
         this.description=description;
         this.petId = petId;
         this.date = date;
+        this.vetId = vetId;
     }
 
     public void setDate(String date){
@@ -49,5 +51,12 @@ public class Visit {
         return this.petId;
     }
 
+    public int getVetId() {
+        return vetId;
+    }
+
+    public void setVetId(int vetId) {
+        this.vetId = vetId;
+    }
 
 }

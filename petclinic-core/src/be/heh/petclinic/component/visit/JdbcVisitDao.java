@@ -20,7 +20,7 @@ public class JdbcVisitDao {
     public List<Visit> getVisits() {
         //JDBCTemplate Permet de faire la requete
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.query("SELECT id, date, description, petId FROM visit", new VisitRowMapper());
+        return select.query("SELECT id, date, description, petId, vetId FROM visit", new VisitRowMapper());
     }
 
     public List<Visit> getVisitsByPetId(int petId) {
