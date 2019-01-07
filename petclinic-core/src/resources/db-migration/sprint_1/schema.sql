@@ -14,17 +14,6 @@ CREATE TABLE vet (
 
 DROP TABLE IF EXISTS pet;
 
-CREATE TABLE pet (
-    id int NOT NULL AUTO_INCREMENT,
-    type varchar(45) not null,
-    name varchar(45) not null,
-    birthdate DATE,
-    ownerId int not null,
-    primary key (id),
-    CONSTRAINT FK_OwnerPet 
-    FOREIGN KEY (ownerId) 
-    REFERENCES owner(id) ON DELETE CASCADE);
-    
 DROP TABLE IF EXISTS owner;
 
 CREATE TABLE owner (
@@ -36,6 +25,19 @@ CREATE TABLE owner (
     telephone varchar(45) not null,
     primary key (id) );
 
+CREATE TABLE pet (
+    id int NOT NULL AUTO_INCREMENT,
+    type varchar(45) not null,
+    name varchar(45) not null,
+    birthdate DATE,
+    ownerId int not null,
+    primary key (id),
+    CONSTRAINT FK_OwnerPet 
+    FOREIGN KEY (ownerId) 
+    REFERENCES owner(id) 
+    ON DELETE CASCADE 
+    ON UPDATE CASCADE);
+
 DROP TABLE IF EXISTS visit;
 
 CREATE TABLE visit (
@@ -46,4 +48,6 @@ CREATE TABLE visit (
     primary key (id),
     CONSTRAINT FK_PetVisit 
     FOREIGN KEY (petId) 
-    REFERENCES pet(id) ON DELETE CASCADE );
+    REFERENCES pet(id) 
+    ON DELETE CASCADE 
+    ON UPDATE CASCADE);
