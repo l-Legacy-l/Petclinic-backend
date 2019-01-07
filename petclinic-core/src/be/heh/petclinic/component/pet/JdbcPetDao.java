@@ -22,7 +22,7 @@ public class JdbcPetDao {
     public List<Pet> getPets() {
         //JDBCTemplate Permet de faire la requete
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.query("SELECT id,type, name, birthdate,ownerId FROM pet",
+        return select.query("SELECT pet.id, pet.type, pet.name, pet.birthdate, pet.ownerId, owner.firstname, owner.lastname FROM pet LEFT JOIN owner on pet.ownerId = owner.id ",
                 new PetRowMapper());
     } 
 
