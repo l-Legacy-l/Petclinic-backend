@@ -86,11 +86,11 @@ public class VisitRestController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value="api/v1/visits",params = {"id"},method = GET)
+	@RequestMapping(value="api/v1/visits",params = {"petId"},method = GET)
 	@ResponseBody
-	public ResponseEntity<Collection<Visit>> getPetById(@RequestParam Map<String,String>param)
+	public ResponseEntity<Collection<Visit>> getVisitsByPetId(@RequestParam Map<String,String>param)
 	{
-		int id = Integer.parseInt(param.get("id"));
+		int id = Integer.parseInt(param.get("petId"));
 		Collection<Visit> visits = VisitComponentImpl.getVisitById(id);
 		if(visits.isEmpty()){
 			return new ResponseEntity<Collection<Visit>>(HttpStatus.NOT_FOUND);
