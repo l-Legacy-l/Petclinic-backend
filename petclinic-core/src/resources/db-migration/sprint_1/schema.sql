@@ -45,9 +45,15 @@ CREATE TABLE visit (
     date DATE not null,
     description varchar(45) not null,
     petId int not null,
+    vetId int,
     primary key (id),
     CONSTRAINT FK_PetVisit 
     FOREIGN KEY (petId) 
     REFERENCES pet(id) 
+	ON DELETE CASCADE 
+    ON UPDATE CASCADE,
+    CONSTRAINT FK_VetVisit
+    FOREIGN KEY (vetId)
+    REFERENCES vet(id)
     ON DELETE CASCADE 
     ON UPDATE CASCADE);

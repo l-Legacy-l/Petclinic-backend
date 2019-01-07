@@ -21,11 +21,11 @@ INSERT INTO pet (type, name, birthdate,ownerId) VALUES ("Chat", "Flo", "2011-08-
 
 INSERT INTO pet (type, name, birthdate,ownerId) VALUES ("Tortue", "Tortette", "2014-08-23","2");
 
-INSERT INTO visit (date, description, petId) VALUES ("2012-12-24", "description de visite 1", "2");
+INSERT INTO visit (date, description, petId) VALUES ("2012-12-24", "description de visite 1", "2","1");
 
-INSERT INTO visit (date, description, petId) VALUES ("2013-11-24", "description de visite 2", "3");
+INSERT INTO visit (date, description, petId) VALUES ("2013-11-24", "description de visite 2", "3","1");
 
-INSERT INTO visit (date, description, petId) VALUES ("2009-09-18", "description de visite 3", "2");
+INSERT INTO visit (date, description, petId) VALUES ("2009-09-18", "description de visite 3", "2","3");
 
-INSERT INTO visit (date, description, petId) VALUES ("2015-01-02", "description de visite 4", "1");
+INSERT INTO visit (date, description, petId) VALUES ("2015-01-02", "description de visite 4", "1","2");
 
