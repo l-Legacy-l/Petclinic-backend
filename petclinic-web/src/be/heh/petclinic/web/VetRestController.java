@@ -22,6 +22,8 @@ import be.heh.petclinic.domain.Vet;
 import java.util.List;
 import java.util.Map;
 import java.util.Collection;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+
 
 @RestController
 
@@ -45,7 +47,7 @@ public class VetRestController {
 	}
 
 	@CrossOrigin
-	@RequestMapping(value = "api/v1/vets/tri",params = {"speciality"}, method = RequestMethod.GET)
+	@RequestMapping(value = "api/v1/vets",params = {"speciality"}, method = RequestMethod.GET)
 	@ResponseBody
 		public ResponseEntity<Collection<Vet>> getVetsSpeciality(@RequestParam Map<String,String>param)
 		{
@@ -57,4 +59,18 @@ public class VetRestController {
 			}
 			return new ResponseEntity<Collection<Vet>>(vets,HttpStatus.OK);
 		}
+
+	@CrossOrigin
+	@RequestMapping(value="api/v1/vetInsert",params = {"lastname","firstname","speciality"},method = GET)
+	@ResponseBody
+	public ResponseEntity<Vet> insertVet(@RequestParam Map<String,String> param)
+	{
+		String lastname = param.get("lastname");
+		String firstname = param.get("firstname");
+		String speciality = param.get("speciality");
+
+		vetComponentImpl.addVet(lastname,firstname,speciality);
+		
+		return new ResponseEntity<Vet>(HttpStatus.CREATED);
+	}
 }

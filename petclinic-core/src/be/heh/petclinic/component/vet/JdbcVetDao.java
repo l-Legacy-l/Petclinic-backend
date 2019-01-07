@@ -26,10 +26,16 @@ public class JdbcVetDao {
     public List<Vet> getVetSpeciality(String spec) {
         //JDBCTemplate Permet de faire la requete
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.query("SELECT lastname, firstname, speciality FROM vet WHERE speciality=?",new Object[] {spec}, new VetRowMapper());
+        return select.query("SELECT * FROM vet WHERE speciality=?",new Object[] {spec}, new VetRowMapper());
             
     }
 
+    public int addVet(String lastname, String firstname, String speciality) 
+    {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
+        return jdbcTemplate.update("INSERT INTO vet (lastname, firstname, speciality) VALUES(?,?,?)",
+        lastname,firstname,speciality);
+	}
 }
 
