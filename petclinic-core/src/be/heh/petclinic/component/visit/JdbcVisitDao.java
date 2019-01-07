@@ -52,7 +52,12 @@ public class JdbcVisitDao {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
         return jdbcTemplate.update("DELETE FROM visit WHERE id=?",id);
+    }
+    
+    public int updateVisit(int id, String date, String description, int petId) {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
+        return jdbcTemplate.update("UPDATE visit SET date=?, description=?, petId=? WHERE id=?", date, description,petId, id);
 	}
 
 }

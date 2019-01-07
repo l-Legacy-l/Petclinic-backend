@@ -54,5 +54,10 @@ class VisitComponentImpl implements VisitComponent {
         return visits;
     }
 
+    @Override
+    public void updateVisit(int id, String date, String description, int petId) {
+        visitDao.updateVisit(id, date, description, petId);
+    }
+
 
 }
