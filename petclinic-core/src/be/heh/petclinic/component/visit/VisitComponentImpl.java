@@ -41,8 +41,10 @@ class VisitComponentImpl implements VisitComponent {
     }
 
 	@Override
-	public Collection<Visit> getVisitById(int ind) {
-		return null;
+	public Collection<Visit> getVisitById(int id) {
+		List<Visit> visits = visitDao.getVisitById(id);
+        
+        return visits;
 	}
 
     @Override

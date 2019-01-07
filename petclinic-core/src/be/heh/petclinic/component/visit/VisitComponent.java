@@ -9,7 +9,7 @@ public interface VisitComponent{
     Collection<Visit> getVisits();
     Collection<Visit> getVisitsByPetId(int petId);
     void addVisit(String date, String description,int petId);
-    Collection<Visit> getVisitById(int ind);
+    Collection<Visit> getVisitById(int id);
     Collection<Visit> getVisitsBySearch(String search);
     void deleteVisit(int id);
 }

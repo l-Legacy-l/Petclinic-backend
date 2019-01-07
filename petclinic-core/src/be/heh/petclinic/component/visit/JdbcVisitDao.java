@@ -29,6 +29,12 @@ public class JdbcVisitDao {
         return select.query("SELECT * FROM visit WHERE petId=?",new Object[] {petId}, new VisitRowMapper());      
     }
 
+    public List<Visit> getVisitById(int id) {
+        JdbcTemplate select = new JdbcTemplate(dataSource);
+        return select.query("SELECT * FROM visit WHERE id=?",new Object[] {id},
+         new VisitRowMapper());      
+    }
+
     public List<Visit> getVisitsBySearch(String search) {
         JdbcTemplate select = new JdbcTemplate(dataSource);
         return select.query("SELECT * FROM visit WHERE date=? OR description=?",new Object[] {search,search},
