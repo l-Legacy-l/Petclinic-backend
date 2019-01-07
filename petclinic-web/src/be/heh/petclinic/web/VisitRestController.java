@@ -87,12 +87,40 @@ public class VisitRestController {
 	}
 
 	@CrossOrigin
+	@RequestMapping(value="api/v1/visits",params = {"vetId"},method = GET)
+	@ResponseBody
+	public ResponseEntity<Collection<Visit>> getVisitsByVetId(@RequestParam Map<String,String>param)
+	{
+		int vetId = Integer.parseInt(param.get("vetId"));
+		System.out.println("je passe");
+		Collection<Visit> visits = VisitComponentImpl.getVisitsByVetId(vetId);
+		if(visits.isEmpty()){
+			return new ResponseEntity<Collection<Visit>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Collection<Visit>>(visits,HttpStatus.OK);
+	}
+
+	@CrossOrigin
+	@RequestMapping(value="api/v1/visits",params = {"id"},method = GET)
+	@ResponseBody
+	public ResponseEntity<Collection<Visit>> getVisitsById(@RequestParam Map<String,String>param)
+	{
+		int id = Integer.parseInt(param.get("id"));
+		Collection<Visit> visits = VisitComponentImpl.getVisitById(id);
+		if(visits.isEmpty()){
+			return new ResponseEntity<Collection<Visit>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Collection<Visit>>(visits,HttpStatus.OK);
+	}
+
+	@CrossOrigin
 	@RequestMapping(value="api/v1/visits",params = {"petId"},method = GET)
 	@ResponseBody
 	public ResponseEntity<Collection<Visit>> getVisitsByPetId(@RequestParam Map<String,String>param)
 	{
-		int id = Integer.parseInt(param.get("petId"));
-		Collection<Visit> visits = VisitComponentImpl.getVisitById(id);
+		int petId = Integer.parseInt(param.get("petId"));
+		System.out.println("je passe");
+		Collection<Visit> visits = VisitComponentImpl.getVisitsByPetId(petId);
 		if(visits.isEmpty()){
 			return new ResponseEntity<Collection<Visit>>(HttpStatus.NOT_FOUND);
 		}
@@ -108,7 +136,7 @@ public class VisitRestController {
 		String description = param.get("description");
 		int petId = Integer.parseInt(param.get("petId"));
 		int id = Integer.parseInt(param.get("id"));
-		int vetId = Integer.parseInt(param.get("id"));
+		int vetId = Integer.parseInt(param.get("vetId"));
 
 		VisitComponentImpl.updateVisit(id,date,description,petId, vetId);
 		return new ResponseEntity<Visit>(HttpStatus.CREATED);
