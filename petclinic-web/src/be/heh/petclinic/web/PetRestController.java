@@ -66,7 +66,6 @@ public class PetRestController {
 		String name = param.get("name");
 		int ownerId = Integer.parseInt(param.get("ownerId"));
 		String birthdate = param.get("birthdate");
-		System.out.println(birthdate);
 
 		PetComponentImpl.addPetById(type,name,birthdate,ownerId);
 		return new ResponseEntity<Pet>(HttpStatus.CREATED);
@@ -100,6 +99,22 @@ public class PetRestController {
 	}
 
 	@CrossOrigin
+	@RequestMapping(value="api/v1/petUpdate",params = {"id","type","name","birthdate","ownerId"},method = GET)
+	@ResponseBody
+	public ResponseEntity<Pet> updatePet(@RequestParam Map<String,String> param)
+	{
+
+		int id = Integer.parseInt(param.get("id"));
+		String type = param.get("type");
+		String name = param.get("name");
+		String birthdate = param.get("birthdate");
+		int ownerId = Integer.parseInt(param.get("ownerId"));
+
+		PetComponentImpl.updatePet(id,type,name,birthdate,ownerId);
+		return new ResponseEntity<Pet>(HttpStatus.CREATED);
+	}
+
+	@CrossOrigin
 	@RequestMapping(value="api/v1/pets",params = {"id"},method = GET)
 	@ResponseBody
 	public ResponseEntity<Collection<Pet>> getPetById(@RequestParam Map<String,String>param)
@@ -123,4 +138,5 @@ public class PetRestController {
 		PetComponentImpl.deletePet(id);
 		return new ResponseEntity<Pet>(HttpStatus.CREATED);
 	}
+
 }

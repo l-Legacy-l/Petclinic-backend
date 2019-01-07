@@ -53,11 +53,18 @@ public class JdbcPetDao {
                 type,name,birthdate,ownerId);
     }
 
+    public int updatePet(int id, String type, String name, String birthdate, int ownerId)
+    {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        return jdbcTemplate.update("UPDATE pet SET type=?, name=?, birthdate=?, ownerId=? WHERE id=?",
+        type,name,birthdate,ownerId,id);
+    }
+
     public int deletePet(int id)
     {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
         return jdbcTemplate.update("DELETE FROM pet WHERE id=?",id);
     }
-    
 }

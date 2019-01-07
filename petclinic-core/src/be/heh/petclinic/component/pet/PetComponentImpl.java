@@ -44,6 +44,11 @@ class PetComponentImpl implements PetComponent {
     }
 
     @Override
+    public void updatePet(int id, String type, String name, String birthdate, int ownerId) {
+        petDao.updatePet(id,type,name,birthdate,ownerId);
+    }
+
+    @Override
     public void deletePet(int id) {
         petDao.deletePet(id);
 
@@ -55,5 +60,7 @@ class PetComponentImpl implements PetComponent {
 
         return pets;
     }
+
+
 
 }
