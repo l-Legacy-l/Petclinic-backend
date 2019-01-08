@@ -45,7 +45,7 @@ CREATE TABLE visit (
     date DATE not null,
     description varchar(45) not null,
     petId int not null,
-    vetId int,
+    vetId int not null,
     primary key (id),
     CONSTRAINT FK_PetVisit 
     FOREIGN KEY (petId) 
