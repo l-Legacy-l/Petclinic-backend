@@ -30,7 +30,7 @@ class VisitComponentImpl implements VisitComponent {
 
     @Override
     public Collection<Visit> getVisitsByVetId(int vetId) {
-        List<Visit> visits = visitDao.getVisitsByPetId(vetId);
+        List<Visit> visits = visitDao.getVisitsByVetId(vetId);
 
         return visits;
     }
