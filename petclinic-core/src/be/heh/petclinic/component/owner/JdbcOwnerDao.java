@@ -20,23 +20,51 @@ public class JdbcOwnerDao {
     public List<Owner> getEvents() {
         //JDBCTemplate Permet de faire la requete
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.query("SELECT id,firstname,lastname,address,city,telephone,pet FROM owner",
+        return select.query("SELECT id,firstname,lastname,address,city,telephone FROM owner",
                 new OwnerRowMapper());
     }
 
-    public int addOwner(String firstname, String lastname,String address,String city,String telephone, String pet)
+    public int addOwner(String firstname, String lastname,String address,String city,String telephone)
     {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
-        return jdbcTemplate.update("INSERT INTO owner (firstname, lastname,address,city,telephone,pet) VALUES(?,?,?,?,?,?)",
-                firstname,lastname,address,city,telephone,pet);
+        return jdbcTemplate.update("INSERT INTO owner (firstname, lastname,address,city,telephone) VALUES(?,?,?,?,?)",
+                firstname,lastname,address,city,telephone);
     }
-
-    
+   
     public List<Owner> getOwnerName(String prenom,String nom) {
         //JDBCTemplate Permet de faire la requete
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.query("SELECT id, firstname, lastname, address, city, telephone, pet FROM owner WHERE firstname=? OR lastname=?", 
+        return select.query("SELECT id, firstname, lastname, address, city, telephone FROM owner WHERE firstname=? OR lastname=?", 
             new Object[] {prenom, nom},new OwnerRowMapper());
+    }
+
+    public List<Owner> getOwnerById(int id) {
+        //JDBCTemplate Permet de faire la requete
+        JdbcTemplate select = new JdbcTemplate(dataSource);
+        
+        return select.query("SELECT id, firstname, lastname, address, city, telephone FROM owner WHERE id=?", new Object[] {id},new OwnerRowMapper());
+    }
+
+    public List<Owner> getOwnersBySearch(String search) {
+        JdbcTemplate select = new JdbcTemplate(dataSource);
+        
+        return select.query("SELECT * FROM owner WHERE firstname=? OR lastname=? OR address=? OR city=? OR telephone=?",
+         new Object[] {search,search,search,search,search},new OwnerRowMapper());
+    }
+
+    public int deleteOwner(int id)
+    {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        return jdbcTemplate.update("DELETE FROM owner WHERE id=?",id);
+    }
+
+    public int updateOwner(int id, String firstname, String lastname,String address,String city,String telephone)
+    {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        return jdbcTemplate.update("UPDATE owner SET firstname=?, lastname=?, address=?, city=?, telephone=? WHERE id=?",
+        firstname,lastname,address,city,telephone, id);
     }
 }

@@ -30,5 +30,35 @@ class VetComponentImpl implements VetComponent {
         return vets;
     }
 
+    @Override
+    public Collection<Vet> getVetById(int id) {
+        List<Vet> vets = vetDao.getVetById(id);
+
+        return vets;
+    }
+
+    @Override
+    public Collection<Vet> getVetsBySearch(String search) 
+    {
+        List<Vet> vets = vetDao.getVetsBySearch(search);
+
+        return vets;
+    }
+
+    @Override
+    public void addVet(String lastname, String firstname, String speciality) {
+        vetDao.addVet(lastname, firstname, speciality);
+    }
+
+    @Override
+    public void updateVet(int id, String lastname, String firstname, String speciality) {
+        vetDao.updateVet(id,lastname,firstname,speciality);
+    }
+
+    @Override
+    public void deleteVet(int id) {
+        vetDao.deleteVet(id);
+    }
+
 
 }

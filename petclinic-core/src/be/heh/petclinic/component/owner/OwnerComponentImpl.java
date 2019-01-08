@@ -24,17 +24,32 @@ class OwnerComponentImpl implements OwnerComponent {
     }
 
     @Override
-    public void addOwner(String firstname,String lastname, String address,String city,String telephone, String pet)
+    public void addOwner(String firstname,String lastname, String address,String city,String telephone)
     {
-        ownerDao.addOwner(firstname, lastname, address, city,telephone,pet);
-
+        ownerDao.addOwner(firstname, lastname, address, city,telephone);
     }
 
     @Override
-    public Collection<Owner> getOwnersName(String prenom,String nom){
-        List<Owner> owners = ownerDao.getOwnerName(prenom,nom);
+    public Collection<Owner> getOwnersBySearch(String search){
+        List<Owner> owners = ownerDao.getOwnersBySearch(search);
 
         return owners;
     }
 
+    @Override
+    public Collection<Owner> getOwnerById(int id) {
+        List<Owner> owners = ownerDao.getOwnerById(id);
+
+        return owners;
+    }
+
+    @Override
+    public void deleteOwner(int id) {
+        ownerDao.deleteOwner(id);
+    }
+
+    @Override
+    public void updateOwner(int id ,String firstname, String lastname, String address, String city, String telephone) {
+        ownerDao.updateOwner(id, firstname, lastname, address, city,telephone);
+    }
 }

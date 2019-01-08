@@ -7,7 +7,10 @@ import java.util.Collection;
 public interface OwnerComponent{
 
     Collection<Owner> getOwners();
-    void addOwner(String firstname,String lastname, String address,String city,String telephone, String pet);
-    Collection<Owner> getOwnersName(String prenom,String nom);
+    void addOwner(String firstname,String lastname, String address,String city,String telephone);
+    Collection<Owner> getOwnerById(int id);
+    Collection<Owner> getOwnersBySearch(String search);
+    void deleteOwner(int id);
+    void updateOwner(int id, String firstname,String lastname, String address,String city,String telephone);
 
 }

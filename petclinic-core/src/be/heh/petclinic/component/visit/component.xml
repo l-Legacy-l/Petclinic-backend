@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"> -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="VisitComponent" class="be.heh.petclinic.component.visit.VisitComponentImpl">
+        <!--C'est le paramètre qu'on passe au constructeur
+        Le ref va faire référence au datasource définit dans le config.xml
+        Comme il va instancier la classe d'implémentation, automatiquement il va instancier le 
+        datasource car on a fait un bean sur le vetComponentImpl
+        
+        Instancier avec autowired dans le controleur-->
+        <constructor-arg name="dataSource" ref="dataSource" />
+    </bean>
+
+</beans>

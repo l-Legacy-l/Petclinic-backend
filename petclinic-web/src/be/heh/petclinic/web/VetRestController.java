@@ -22,6 +22,8 @@ import be.heh.petclinic.domain.Vet;
 import java.util.List;
 import java.util.Map;
 import java.util.Collection;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+
 
 @RestController
 
@@ -44,7 +46,8 @@ public class VetRestController {
 		return new ResponseEntity<Collection<Vet>>(vets,HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "api/v1/vets/tri",params = {"speciality"}, method = RequestMethod.GET)
+	@CrossOrigin
+	@RequestMapping(value = "api/v1/vets",params = {"speciality"}, method = RequestMethod.GET)
 	@ResponseBody
 		public ResponseEntity<Collection<Vet>> getVetsSpeciality(@RequestParam Map<String,String>param)
 		{
@@ -56,4 +59,72 @@ public class VetRestController {
 			}
 			return new ResponseEntity<Collection<Vet>>(vets,HttpStatus.OK);
 		}
+
+	@CrossOrigin
+	@RequestMapping(value = "api/v1/vets",params = {"id"}, method = RequestMethod.GET)
+	@ResponseBody
+		public ResponseEntity<Collection<Vet>> getVetById(@RequestParam Map<String,String>param)
+		{
+			int id = Integer.parseInt(param.get("id"));
+	
+			Collection<Vet> vets = vetComponentImpl.getVetById(id);
+			if(vets.isEmpty()){
+				return new ResponseEntity<Collection<Vet>>(HttpStatus.NOT_FOUND);
+			}
+			return new ResponseEntity<Collection<Vet>>(vets,HttpStatus.OK);
+		}
+
+		@CrossOrigin
+		@RequestMapping(value = "api/v1/vets",params = {"search"}, method = RequestMethod.GET)
+		@ResponseBody
+			public ResponseEntity<Collection<Vet>> getVetsBySearch(@RequestParam Map<String,String>param)
+			{
+				String search = param.get("search");
+				Collection<Vet> vets = vetComponentImpl.getVetsBySearch(search);
+				if(vets.isEmpty()){
+					return new ResponseEntity<Collection<Vet>>(HttpStatus.NOT_FOUND);
+				}
+				return new ResponseEntity<Collection<Vet>>(vets,HttpStatus.OK);
+			}
+
+	@CrossOrigin
+	@RequestMapping(value="api/v1/vetInsert",params = {"lastname","firstname","speciality"},method = GET)
+	@ResponseBody
+	public ResponseEntity<Vet> insertVet(@RequestParam Map<String,String> param)
+	{
+		String lastname = param.get("lastname");
+		String firstname = param.get("firstname");
+		String speciality = param.get("speciality");
+
+		vetComponentImpl.addVet(lastname,firstname,speciality);
+		
+		return new ResponseEntity<Vet>(HttpStatus.CREATED);
+	}
+
+	@CrossOrigin
+	@RequestMapping(value="api/v1/vetDelete",params = {"id"},method = GET)
+	@ResponseBody
+	public ResponseEntity<Vet> deleteVet(@RequestParam Map<String,String> param)
+	{
+		int id = Integer.parseInt(param.get("id"));
+
+		vetComponentImpl.deleteVet(id);
+		
+		return new ResponseEntity<Vet>(HttpStatus.CREATED);
+	}
+
+	@CrossOrigin
+	@RequestMapping(value="api/v1/vetUpdate",params = {"id","lastname","firstname","speciality"},method = GET)
+	@ResponseBody
+	public ResponseEntity<Vet> updateVet(@RequestParam Map<String,String> param)
+	{
+
+		int id = Integer.parseInt(param.get("id"));
+		String lastname = param.get("lastname");
+		String firstname = param.get("firstname");
+		String speciality = param.get("speciality");
+
+		vetComponentImpl.updateVet(id,lastname,firstname,speciality);
+		return new ResponseEntity<Vet>(HttpStatus.CREATED);
+	}
 }

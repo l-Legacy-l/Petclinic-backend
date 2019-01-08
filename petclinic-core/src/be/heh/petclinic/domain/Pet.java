@@ -4,18 +4,16 @@ public class Pet{
 
     private String type;
     private String name;
-    private String ownerFirstname;
-    private String ownerLastname;
     private String birthdate;
     private int id;
+    private int ownerId;
 
-    public Pet (int id, String type, String name, String birthdate, String ownerFirstname, String ownerLastname)
+    public Pet (int id, String type, String name, String birthdate,int ownerId)
     {
         this.type = type;
         this.name=name;
         this.birthdate = birthdate;
-        this.ownerFirstname = ownerFirstname;
-        this.ownerLastname=ownerLastname;
+        this.ownerId=ownerId;
         this.id = id;
     }
 
@@ -24,14 +22,9 @@ public class Pet{
         this.type = type;
     }
 
-    public void setOwnerFirstname(String ownerFirstname)
+    public void setOwnerId(int ownerId)
     {
-        this.ownerFirstname = ownerFirstname;
-    }
-
-    public void setOwnerLastname(String ownerLastname)
-    {
-        this.ownerLastname = ownerLastname;
+        this.ownerId = ownerId;
     }
 
     public void setBirthdate(String birthdate)
@@ -47,12 +40,8 @@ public class Pet{
         return name;
     }
 
-    public String getOwnerFirstname() {
-        return ownerFirstname;
-    }
-
-    public String getOwnerLastname() {
-        return ownerLastname;
+    public int getOwnerId() {
+        return ownerId;
     }
 
     public String getBirthdate() {

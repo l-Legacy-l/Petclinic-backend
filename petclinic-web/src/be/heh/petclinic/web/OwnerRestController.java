@@ -33,8 +33,9 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 public class OwnerRestController {
 
-	public String nom;
-	public String prenom;
+	private String search;
+	private int id;
+
 
 	@Autowired
 	private OwnerComponent OwnerComponentImpl;
@@ -51,32 +52,76 @@ public class OwnerRestController {
 		return new ResponseEntity<Collection<Owner>>(owners,HttpStatus.OK);
 	}
 
-	@RequestMapping(value="api/v1/ownerInsert",params = {"firstname","lastname","address","city",
-			"telephone","pet"},method = GET)
+	@CrossOrigin
+	@RequestMapping(value = "api/v1/owners",params = {"id"}, method = RequestMethod.GET)
 	@ResponseBody
-	public ResponseEntity<Owner> insertPet(@RequestParam Map<String,String> param)
+	public ResponseEntity<Collection<Owner>> getOwnerById(@RequestParam Map<String,String>param)
+	{
+		id = Integer.parseInt(param.get("id"));
+
+		Collection<Owner> owners = OwnerComponentImpl.getOwnerById(id);
+		if(owners.isEmpty()){
+			return new ResponseEntity<Collection<Owner>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Collection<Owner>>(owners,HttpStatus.OK);
+	}
+
+	@CrossOrigin
+	@RequestMapping(value="api/v1/ownerInsert",params = {"firstname","lastname","address","city",
+			"telephone"},method = GET)
+	@ResponseBody
+	public ResponseEntity<Owner> insertOwner(@RequestParam Map<String,String> param)
 	{
 		String firstname = param.get("firstname");
 		String lastname = param.get("lastname");
 		String address = param.get("address");
 		String city = param.get("city");
 		String telephone = param.get("telephone");
-		String pet = param.get("pet");
 
-		OwnerComponentImpl.addOwner(firstname,lastname,address,city,telephone,pet);
+		OwnerComponentImpl.addOwner(firstname,lastname,address,city,telephone);
 		return new ResponseEntity<Owner>(HttpStatus.CREATED);
 	}
-	@RequestMapping(value = "api/v1/owners/tri",params = {"firstname","lastname"}, method = RequestMethod.GET)
-	@ResponseBody
-		public ResponseEntity<Collection<Owner>> getOwnersName(@RequestParam Map<String,String>param)
-		{
-			nom = param.get("lastname");
-			prenom = param.get("firstname");
 
-			Collection<Owner> owners = OwnerComponentImpl.getOwnersName(prenom,nom);
+	@CrossOrigin
+	@RequestMapping(value = "api/v1/owners",params = {"search"}, method = RequestMethod.GET)
+	@ResponseBody
+		public ResponseEntity<Collection<Owner>> getOwnersBySearch(@RequestParam Map<String,String>param)
+		{
+			search = param.get("search");
+
+			Collection<Owner> owners = OwnerComponentImpl.getOwnersBySearch(search);
 			if(owners.isEmpty()){
 				return new ResponseEntity<Collection<Owner>>(HttpStatus.NOT_FOUND);
 			}
 			return new ResponseEntity<Collection<Owner>>(owners,HttpStatus.OK);
+		}
+
+
+		@CrossOrigin
+		@RequestMapping(value="api/v1/ownerUpdate",params = {"id","firstname","lastname","address","city",
+				"telephone"},method = GET)
+		@ResponseBody
+		public ResponseEntity<Owner> updateOwner(@RequestParam Map<String,String> param)
+		{
+			id = Integer.parseInt(param.get("id"));
+			String firstname = param.get("firstname");
+			String lastname = param.get("lastname");
+			String address = param.get("address");
+			String city = param.get("city");
+			String telephone = param.get("telephone");
+	
+			OwnerComponentImpl.updateOwner(id,firstname,lastname,address,city,telephone);
+			return new ResponseEntity<Owner>(HttpStatus.CREATED);
+		}
+
+		@CrossOrigin
+		@RequestMapping(value="api/v1/ownerDelete",params = {"id"},method = GET)
+		@ResponseBody
+		public ResponseEntity<Owner> deleteOwner(@RequestParam Map<String,String> param)
+		{
+			int id = Integer.parseInt(param.get("id"));
+	
+			OwnerComponentImpl.deleteOwner(id);
+			return new ResponseEntity<Owner>(HttpStatus.CREATED);
 		}
 }

@@ -19,20 +19,48 @@ class PetComponentImpl implements PetComponent {
 
     @Override
     public Collection<Pet> getPets() {
-        List<Pet> pets = petDao.getEvents();
+        List<Pet> pets = petDao.getPets();
    
         return pets;
     }
 
     @Override
-    public Collection<Pet> getPetsType(String sort){
-        List<Pet> pets = petDao.getPetType(sort);
+    public Collection<Pet> getPetsBySearch(String search){
+        List<Pet> pets = petDao.getPetsBySearch(search);
 
         return pets;
     }
 
-    public void addPet(String type, String name, String birthdate, String ownerFirstname, String ownerLastname) {
-        petDao.addPet(type, name, birthdate, ownerFirstname, ownerLastname);
+    @Override
+    public void addPetById(String type, String name, String birthdate, int ownerId) {
+        petDao.addPetById(type, name, birthdate, ownerId);
     }
+
+    @Override
+    public Collection<Pet> getPetsByOwnerId(int ownerId) {
+        List<Pet> pets = petDao.getPetsByOwnerId(ownerId);
+
+        return pets;
+    }
+
+    @Override
+    public void updatePet(int id, String type, String name, String birthdate, int ownerId) {
+        petDao.updatePet(id,type,name,birthdate,ownerId);
+    }
+
+    @Override
+    public void deletePet(int id) {
+        petDao.deletePet(id);
+
+    }
+
+    @Override
+    public Collection<Pet> getPetById(int id) {
+        List<Pet> pets = petDao.getPetById(id);
+
+        return pets;
+    }
+
+
 
 }

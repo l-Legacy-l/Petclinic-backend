@@ -2,7 +2,9 @@ package be.heh.petclinic.web;
 
 import java.util.Collection;
 
+import be.heh.petclinic.component.owner.OwnerComponent;
 import be.heh.petclinic.component.pet.PetComponent;
+import be.heh.petclinic.domain.Owner;
 import be.heh.petclinic.domain.Pet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -31,10 +33,17 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RestController
 
 public class PetRestController {
-	public String sort;
+	private String search;
+	private int ownerId;
+	private int id;
 
 	@Autowired
 	private PetComponent PetComponentImpl;
+
+	@Autowired
+	private OwnerComponent OwnerComponentImpl;
+
+
     
 	//@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@CrossOrigin
@@ -48,33 +57,86 @@ public class PetRestController {
 		return new ResponseEntity<Collection<Pet>>(pets,HttpStatus.OK);
 	}
 
-	@RequestMapping(value="api/v1/petInsert",params = {"type","name","birthdate","ownerFirstname",
-			"ownerLastname"},method = GET)
+	@CrossOrigin
+	@RequestMapping(value="api/v1/petInsert",params = {"type","name","birthdate","ownerId"},method = GET)
 	@ResponseBody
 	public ResponseEntity<Pet> insertPet(@RequestParam Map<String,String> param)
 	{
 		String type = param.get("type");
 		String name = param.get("name");
-		String ownerFirstname = param.get("ownerFirstname");
-		String ownerLastname = param.get("ownerLastname");
+		int ownerId = Integer.parseInt(param.get("ownerId"));
 		String birthdate = param.get("birthdate");
-		System.out.println(birthdate);
 
-		PetComponentImpl.addPet(type,name,birthdate,ownerFirstname,ownerLastname);
+		PetComponentImpl.addPetById(type,name,birthdate,ownerId);
 		return new ResponseEntity<Pet>(HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "api/v1/pets/tri",params = {"type"}, method = RequestMethod.GET)
+	@CrossOrigin
+	@RequestMapping(value = "api/v1/pets",params = {"search"}, method = RequestMethod.GET)
 	@ResponseBody
 		public ResponseEntity<Collection<Pet>> getPetsType(@RequestParam Map<String,String>param)
 		{
-			sort = param.get("type");
-			Collection<Pet> pets = PetComponentImpl.getPetsType(sort);
+			search = param.get("search");
+			Collection<Pet> pets = PetComponentImpl.getPetsBySearch(search);
 			if(pets.isEmpty()){
 				return new ResponseEntity<Collection<Pet>>(HttpStatus.NOT_FOUND);
 			}
 			return new ResponseEntity<Collection<Pet>>(pets,HttpStatus.OK);
 		}
-
 	
+	@CrossOrigin
+	@RequestMapping(value="api/v1/pets",params = {"ownerId"},method = GET)
+	@ResponseBody
+	public ResponseEntity<Collection<Pet>> getPetByOwnerId(@RequestParam Map<String,String>param)
+	{
+		ownerId = Integer.parseInt(param.get("ownerId"));
+		Collection<Pet> pets = PetComponentImpl.getPetsByOwnerId(ownerId);
+		if(pets.isEmpty()){
+			return new ResponseEntity<Collection<Pet>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Collection<Pet>>(pets,HttpStatus.OK);
+
+	}
+
+	@CrossOrigin
+	@RequestMapping(value="api/v1/petUpdate",params = {"id","type","name","birthdate","ownerId"},method = GET)
+	@ResponseBody
+	public ResponseEntity<Pet> updatePet(@RequestParam Map<String,String> param)
+	{
+
+		int id = Integer.parseInt(param.get("id"));
+		String type = param.get("type");
+		String name = param.get("name");
+		String birthdate = param.get("birthdate");
+		int ownerId = Integer.parseInt(param.get("ownerId"));
+
+		PetComponentImpl.updatePet(id,type,name,birthdate,ownerId);
+		return new ResponseEntity<Pet>(HttpStatus.CREATED);
+	}
+
+	@CrossOrigin
+	@RequestMapping(value="api/v1/pets",params = {"id"},method = GET)
+	@ResponseBody
+	public ResponseEntity<Collection<Pet>> getPetById(@RequestParam Map<String,String>param)
+	{
+		id = Integer.parseInt(param.get("id"));
+		Collection<Pet> pets = PetComponentImpl.getPetById(id);
+		if(pets.isEmpty()){
+			return new ResponseEntity<Collection<Pet>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Collection<Pet>>(pets,HttpStatus.OK);
+
+	}
+
+	@CrossOrigin
+	@RequestMapping(value="api/v1/petDelete",params = {"id"},method = GET)
+	@ResponseBody
+	public ResponseEntity<Pet> deletePet(@RequestParam Map<String,String> param)
+	{
+		int id = Integer.parseInt(param.get("id"));
+
+		PetComponentImpl.deletePet(id);
+		return new ResponseEntity<Pet>(HttpStatus.CREATED);
+	}
+
 }
