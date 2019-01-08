@@ -30,6 +30,14 @@ public class JdbcVetDao {
             
     }
 
+    public List<Vet> getVetById(int id) {
+        //JDBCTemplate Permet de faire la requete
+        JdbcTemplate select = new JdbcTemplate(dataSource);
+        return select.query("SELECT * FROM vet WHERE id=?",new Object[] {id}, new VetRowMapper());
+            
+    }
+
+
     public int addVet(String lastname, String firstname, String speciality) 
     {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);

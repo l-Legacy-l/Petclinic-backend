@@ -32,7 +32,9 @@ class VetComponentImpl implements VetComponent {
 
     @Override
     public Collection<Vet> getVetById(int id) {
-        return null;
+        List<Vet> vets = vetDao.getVetById(id);
+        
+        return vets;
     }
 
     @Override
