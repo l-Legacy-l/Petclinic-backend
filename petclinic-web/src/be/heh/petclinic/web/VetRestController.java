@@ -74,6 +74,19 @@ public class VetRestController {
 			return new ResponseEntity<Collection<Vet>>(vets,HttpStatus.OK);
 		}
 
+		@CrossOrigin
+		@RequestMapping(value = "api/v1/vets",params = {"search"}, method = RequestMethod.GET)
+		@ResponseBody
+			public ResponseEntity<Collection<Vet>> getVetsBySearch(@RequestParam Map<String,String>param)
+			{
+				String search = param.get("search");
+				Collection<Vet> vets = vetComponentImpl.getVetsBySearch(search);
+				if(vets.isEmpty()){
+					return new ResponseEntity<Collection<Vet>>(HttpStatus.NOT_FOUND);
+				}
+				return new ResponseEntity<Collection<Vet>>(vets,HttpStatus.OK);
+			}
+
 	@CrossOrigin
 	@RequestMapping(value="api/v1/vetInsert",params = {"lastname","firstname","speciality"},method = GET)
 	@ResponseBody
@@ -103,7 +116,7 @@ public class VetRestController {
 	@CrossOrigin
 	@RequestMapping(value="api/v1/vetUpdate",params = {"id","lastname","firstname","speciality"},method = GET)
 	@ResponseBody
-	public ResponseEntity<Vet> updatePet(@RequestParam Map<String,String> param)
+	public ResponseEntity<Vet> updateVet(@RequestParam Map<String,String> param)
 	{
 
 		int id = Integer.parseInt(param.get("id"));
