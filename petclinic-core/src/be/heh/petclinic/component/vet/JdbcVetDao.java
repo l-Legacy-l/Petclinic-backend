@@ -36,6 +36,13 @@ public class JdbcVetDao {
 
         return jdbcTemplate.update("INSERT INTO vet (lastname, firstname, speciality) VALUES(?,?,?)",
         lastname,firstname,speciality);
+    }
+    
+    public int deleteVet(int id) 
+    {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        return jdbcTemplate.update("DELETE FROM vet WHERE id=?",id);
 	}
 }
 

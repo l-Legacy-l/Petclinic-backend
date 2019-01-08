@@ -47,7 +47,7 @@ class VetComponentImpl implements VetComponent {
 
     @Override
     public void deleteVet(int id) {
-
+        vetDao.deleteVet(id);
     }
 
 

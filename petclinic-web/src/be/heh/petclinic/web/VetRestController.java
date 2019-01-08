@@ -73,4 +73,16 @@ public class VetRestController {
 		
 		return new ResponseEntity<Vet>(HttpStatus.CREATED);
 	}
+
+	@CrossOrigin
+	@RequestMapping(value="api/v1/vetDelete",params = {"id"},method = GET)
+	@ResponseBody
+	public ResponseEntity<Vet> deleteVet(@RequestParam Map<String,String> param)
+	{
+		int id = Integer.parseInt(param.get("id"));
+
+		vetComponentImpl.deleteVet(id);
+		
+		return new ResponseEntity<Vet>(HttpStatus.CREATED);
+	}
 }
