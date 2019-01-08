@@ -43,6 +43,17 @@ public class JdbcVetDao {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 
         return jdbcTemplate.update("DELETE FROM vet WHERE id=?",id);
-	}
+    }
+
+    public int updateVet(int id, String lastname, String firstname, String speciality)
+    {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+        return jdbcTemplate.update("UPDATE vet SET lastname=?, firstname=?, speciality=? WHERE id=?",
+        lastname,firstname,speciality,id);
+    }
+
+
+    
 }
 

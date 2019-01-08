@@ -85,4 +85,19 @@ public class VetRestController {
 		
 		return new ResponseEntity<Vet>(HttpStatus.CREATED);
 	}
+
+	@CrossOrigin
+	@RequestMapping(value="api/v1/vetUpdate",params = {"id","lastname","firstname","speciality"},method = GET)
+	@ResponseBody
+	public ResponseEntity<Vet> updatePet(@RequestParam Map<String,String> param)
+	{
+
+		int id = Integer.parseInt(param.get("id"));
+		String lastname = param.get("lastname");
+		String firstname = param.get("firstname");
+		String speciality = param.get("speciality");
+
+		vetComponentImpl.updateVet(id,lastname,firstname,speciality);
+		return new ResponseEntity<Vet>(HttpStatus.CREATED);
+	}
 }

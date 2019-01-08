@@ -42,7 +42,7 @@ class VetComponentImpl implements VetComponent {
 
     @Override
     public void updateVet(int id, String lastname, String firstname, String speciality) {
-
+        vetDao.updateVet(id,lastname,firstname,speciality);
     }
 
     @Override
